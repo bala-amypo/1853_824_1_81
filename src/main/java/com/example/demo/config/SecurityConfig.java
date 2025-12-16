@@ -2,4 +2,6 @@
 
 
 
-public class 
+public class SecurityConfig {
+    
+}
