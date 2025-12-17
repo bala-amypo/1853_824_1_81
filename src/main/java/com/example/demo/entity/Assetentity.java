@@ -6,4 +6,5 @@ public class Assetentity  {
     private String assetType;
     private String model;
     
+    
 }
