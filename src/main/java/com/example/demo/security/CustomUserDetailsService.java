@@ -1,4 +1,6 @@
 
 package com.example.demo.security;
 
-public class Cuso
+public class CustomUserDeatils  {
+    
+}
