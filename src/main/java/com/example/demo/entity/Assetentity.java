@@ -9,5 +9,15 @@ package com.example.demo.repository;
 @Entity
 
 public class Assetentity {
-    
+    private Long id;
+    private String assetTag;
+    private String assetType;
+    private String model;
+    private String purchaseDate;
+    private String status;
+    private String currentHolder;
+    private String createdAt;
+
+    @prepersist
+    public void 
 }    
