@@ -6,9 +6,7 @@ package com.example.demo.repository;
  import jakarta.persistence.JoinColumn;
  import java.time.LocalDate;
  import java.time.LocalDateTime;
- import jakarta.persistence.PrePersist;
-
-
+ 
 @Entity
 public class Assetentity {
     private Long id;
@@ -19,9 +17,12 @@ public class Assetentity {
     private String status;
     private String currentHolder;
     private String createdAt;
+    public void ValidateAndInitializer() {
+        this.purchaseDate = LocAL
+    }
 
     @PrePersist
     public void onCreate() {
-        
+
     }
 }    
