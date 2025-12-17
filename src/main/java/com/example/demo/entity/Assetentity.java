@@ -6,8 +6,10 @@ package com.example.demo.repository;
  import jakarta.persistence.JoinColumn;
  import java.time.LocalDate;
  import java.time.LocalDateTime;
-@Entity
+ import jakarta.persistence.PrePersist;
 
+
+@Entity
 public class Assetentity {
     private Long id;
     private String assetTag;
@@ -18,6 +20,8 @@ public class Assetentity {
     private String currentHolder;
     private String createdAt;
 
-    @prepersist
-    public void 
+    @PrePersist
+    public void onCreate() {
+        
+    }
 }    
