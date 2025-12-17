@@ -18,11 +18,12 @@ public class Assetentity {
     private String currentHolder;
     private String createdAt;
     public void ValidateAndInitializer() {
-        this.purchaseDate = LocAL
+        this.purchaseDate = LocalDate.now();
+        this.createdAt = LocalDateTime.now();
     }
 
     @PrePersist
     public void onCreate() {
-
+        this.createdAt = new Timestamp(System.LocalDateTime.now());
     }
 }    
