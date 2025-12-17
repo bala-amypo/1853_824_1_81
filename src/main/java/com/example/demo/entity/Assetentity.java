@@ -10,6 +10,6 @@ public class Assetentity  {
     private LocalDate PurchaseData ;
     private String status;
     private User currentHolder;
-    private creat
+    private LocalDateTime createdAt
     
 }
