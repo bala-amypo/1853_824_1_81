@@ -1,33 +1,57 @@
 package com.example.demo.repository;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(
+    name = "assets",
+    uniqueConstraints = {
+        @UniqueConstraint(columnNames = "asset_tag")
+    }
+)
 public class AssetEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "asset_tag", nullable = false, unique = true)
     private String assetTag;
-    private String assetType;
-    private String model;
-    private LocalDate purchaseDate;
-    private String status;
 
+    @Column(name = "asset_type", nullable = false)
+    private String assetType; 
+    
+
+    @Column(nullable = false)
+    private String model;
+
+    private LocalDate purchaseDate;
+
+    @Column(nullable = false)
+    private String status; 
+  
     @ManyToOne
-    @JoinColumn(name = "current_holder_id")
+    @JoinColumn(name = "current_holder_id", nullable = true)
     private User currentHolder;
 
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
+
+  
+    @PrePersist
+    public void prePersist() {
+        if (status == null) {
+            status = "AVAILABLE";
+        }
+        if (createdAt == null) {
+            createdAt = LocalDateTime.now();
+        }
+    }
+
+
 
     public Long getId() {
         return id;
@@ -87,9 +111,5 @@ public class AssetEntity {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
     }
 }
