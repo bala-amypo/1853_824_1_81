@@ -1,7 +1,1 @@
-
-
-
-
-public class AssetStatusUpdateRequest {
-    
-}
+ 

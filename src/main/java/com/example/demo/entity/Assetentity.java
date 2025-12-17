@@ -14,7 +14,7 @@ package com.example.demo.repository;
         @UniqueConstraint(columnNames = "asset_tag")
     }
 )
-public class AssetEntity {
+public class Assetentity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
