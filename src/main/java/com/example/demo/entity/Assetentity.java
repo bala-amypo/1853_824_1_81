@@ -26,4 +26,68 @@ public class Assetentity {
     public void onCreate() {
         this.createdAt = new Timestamp(System.LocalDateTime.now());
     }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getAssetTag() {
+        return assetTag;
+    }
+
+    public void setAssetTag(String assetTag) {
+        this.assetTag = assetTag;
+    }
+
+    public String getAssetType() {
+        return assetType;
+    }
+
+    public void setAssetType(String assetType) {
+        this.assetType = assetType;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(String purchaseDate) {
+        this.purchaseDate = purchaseDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getCurrentHolder() {
+        return currentHolder;
+    }
+
+    public void setCurrentHolder(String currentHolder) {
+        this.currentHolder = currentHolder;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+}    
 }    
