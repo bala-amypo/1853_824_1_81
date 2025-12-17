@@ -3,7 +3,6 @@ package com.example.demo.repository;
  import jakarta.persistence.Id; 
  import jakarta.persistence.GeneratedValue; 
  import jakarta.persistence.GenerationType;
- import jakarta.persistence.ManyToOne;
  import jakarta.persistence.JoinColumn;
  import java.time.LocalDate;
  import java.time.LocalDateTime;
@@ -20,10 +19,10 @@ public class Assetentity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "asset_tag", nullable = false, unique = true)
+    @Column(unique = true)
     private String assetTag;
 
-    @Column(name = "asset_type", nullable = false)
+    @Column(  nullable = false)
     private String assetType; 
     
 
@@ -36,10 +35,10 @@ public class Assetentity {
     private String status; 
   
     @ManyToOne
-    @JoinColumn(name = "current_holder_id", nullable = true)
+    @JoinColumn(  nullable = true)
     private User currentHolder;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(  nullable = false)
     private LocalDateTime createdAt;
 
   
