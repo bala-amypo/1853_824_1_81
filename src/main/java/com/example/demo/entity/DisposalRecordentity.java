@@ -80,7 +80,7 @@ public class  DisposalRecordentity{
         this.createdAt = createdAt;
        
 
-    public DiposalRecordentity(Long id,String asset,String DisposalMethod,String DisposalDate,String approvedBy,String notes,String CreatedAt,)
+    public DiposalRecordentity(Long id,String asset,String disposalMethod,String disposalDate,String approvedBy,String notes,String createdAt,)
     {
         this.id = id;
         this.asset = asset;
