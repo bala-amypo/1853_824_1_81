@@ -77,16 +77,27 @@ public class  DisposalRecordentity{
         this.notes = notes;
     }
     public void setcreatedAt(String createdAt){
-        this.createdAt = created
+        this.createdAt = createdAt;
        
 
-    public LifecycleEvententity(Long id,String asset,String eventType,String eventDescription,String eventDate,String performedBy){
+    public LifecycleEvententity(Long id,String asset,String DisposalMethod,String DisposalDate,String approvedBy,String notes,String CreatedAt,)
+    {
         this.id = id;
         this.asset = asset;
-        this.eventType = eventType;
-        this.eventDescription = eventDescription;
-        this.eventDate = eventDate;
-        this.performedBy = performedBy;
+       private Long id;
+    private String asset;
+
+    
+    private String DisposalMethod;
+
+    private String DisposalDate;
+
+    private String approvedBy;
+
+    private String notes;
+
+    private String CreatedAt ;
+
     }
 
     public LifecycleEvententity(){
