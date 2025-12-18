@@ -66,16 +66,17 @@ public class  DisposalRecordentity{
     }
 
     public void setdisposalDate(String disposalDate) {
-        this.eventDescription = disposalDate;
+        this.disposalDate = disposalDate;
     }
 
-    public void setEventDate(String eventDate) {
-        this.eventDate = eventDate;
+    public void setapprovedBy(String approvedBy) {
+        this.approvedBy = approvedBy;
     }
 
-    public void setPerformedBy(String performedBy) {
-        this.performedBy = performedBy;
+    public void setnotes(String notes) {
+        this.notes = notes;
     }
+    public void 
        
 
     public LifecycleEvententity(Long id,String asset,String eventType,String eventDescription,String eventDate,String performedBy){
