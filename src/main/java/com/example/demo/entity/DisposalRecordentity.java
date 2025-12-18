@@ -84,7 +84,7 @@ public class  disposalRecordentity{
     {
         this.id = id;
         this.asset = asset;
-        this.DisposalMethod = DisposalMethod;
+        this.disposalMethod = disposalMethod;
         this.disposalDate = disposalDate;
         this.approvedBy = approvedBy;
         this.notes = notes;
@@ -92,6 +92,6 @@ public class  disposalRecordentity{
 
     }
 
-    public disposalRecordEntity(){
+    public disposalRecordentity(){
     }
 }
