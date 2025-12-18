@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,7 +9,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
-import jakarta.persistence.Column;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -64,5 +64,51 @@ public class DisposalRecordEntity {
         }
     }
 
-    // Getters and setters omitted for brevity (already correct)
+    public Long getId() {
+        return id;
+    }
+
+    public AssetEntity getAsset() {
+        return asset;
+    }
+
+    public String getDisposalMethod() {
+        return disposalMethod;
+    }
+
+    public LocalDate getDisposalDate() {
+        return disposalDate;
+    }
+
+    public UserEntity getApprovedBy() {
+        return approvedBy;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setAsset(AssetEntity asset) {
+        this.asset = asset;
+    }
+
+    public void setDisposalMethod(String disposalMethod) {
+        this.disposalMethod = disposalMethod;
+    }
+
+    public void setDisposalDate(LocalDate disposalDate) {
+        this.disposalDate = disposalDate;
+    }
+
+    public void setApprovedBy(UserEntity approvedBy) {
+        this.approvedBy = approvedBy;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 }
