@@ -53,5 +53,7 @@ public class Userentity {
             createdAt = LocalDateTime.now();
         }
     }
-
+public Userentity {
+    
+}
 }
