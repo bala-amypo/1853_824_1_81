@@ -38,7 +38,7 @@ public class LifecycleEventEntity {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "performed_by", nullable = false)
-    private UserEntity performedBy;
+    private Userentity performedBy;
 
     @PrePersist
     public void prePersist() {
