@@ -101,9 +101,7 @@ public class Assetentity {
         this. currentHolder = currentHolder;
         this.createdAt = createdAt;
     }
-    public Assetentity(){
 
-    }
     }
 }    
    
