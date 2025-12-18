@@ -48,7 +48,6 @@ public class Assetentity {
 
    
     public Assetentity() {
-        // Required by JPA
     }
 
     public Assetentity(String assetTag, String assetType, String model,
