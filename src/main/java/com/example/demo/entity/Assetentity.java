@@ -1,39 +1,70 @@
 package com.example.demo.repository;
 
+import jakarta.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
- import jakarta.persistence.Entity;
- import jakarta.persistence.Id; 
- import jakarta.persistence.GeneratedValue; 
- import jakarta.persistence.GenerationType;
- import jakarta.persistence.JoinColumn;
- import java.time.LocalDate;
- import java.time.LocalDateTime;
- 
 @Entity
-public class Assetentity {
-    private Long id;
-    private String assetTag;
-    private String assetType;
-    private String model;
-    private String purchaseDate;
-    private String status;
-    private String currentHolder;
-    private String createdAt;
-    public void ValidateAndInitializer() {
-        this.purchaseDate = LocalDate.now();
-        this.createdAt = LocalDateTime.now();
-    }
+@Table(name = "assets")
+public class AssetEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "asset_tag", nullable = false, unique = true)
+    private String assetTag;
+
+    @Column(name = "asset_type", nullable = false)
+    private String assetType;
+
+    @Column(nullable = false)
+    private String model;
+
+    private LocalDate purchaseDate;
+
+    @Column(nullable = false)
+    private String status;
+
+    @Column(name = "current_holder")
+    private String currentHolder;
+
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
+
+    /* ---------- Lifecycle Callback ---------- */
     @PrePersist
     public void onCreate() {
-        this.createdAt = new Timestamp(System.LocalDateTime.now());
-    }
-    public Long getId() {
-        return id;
+        if (purchaseDate == null) {
+            purchaseDate = LocalDate.now();
+        }
+        if (createdAt == null) {
+            createdAt = LocalDateTime.now();
+        }
+        if (status == null) {
+            status = "AVAILABLE";
+        }
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    /* ---------- Constructors ---------- */
+    public AssetEntity() {
+        // Required by JPA
+    }
+
+    public AssetEntity(String assetTag, String assetType, String model,
+                       LocalDate purchaseDate, String status,
+                       String currentHolder) {
+        this.assetTag = assetTag;
+        this.assetType = assetType;
+        this.model = model;
+        this.purchaseDate = purchaseDate;
+        this.status = status;
+        this.currentHolder = currentHolder;
+    }
+
+    /* ---------- Getters & Setters ---------- */
+    public Long getId() {
+        return id;
     }
 
     public String getAssetTag() {
@@ -60,11 +91,11 @@ public class Assetentity {
         this.model = model;
     }
 
-    public String getPurchaseDate() {
+    public LocalDate getPurchaseDate() {
         return purchaseDate;
     }
 
-    public void setPurchaseDate(String purchaseDate) {
+    public void setPurchaseDate(LocalDate purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
 
@@ -84,24 +115,7 @@ public class Assetentity {
         this.currentHolder = currentHolder;
     }
 
-    public String getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-    public class Assetentity {
-       
-        this.assetTag = assetTag ;
-        this.assetType = assetType;
-        this.model = model;
-        this.purchaseDate = purchaseDate;
-        this.status = status;
-        this. currentHolder = currentHolder;
-        this.createdAt = createdAt;
-    }
-
-    }
-}    
-   
+}
