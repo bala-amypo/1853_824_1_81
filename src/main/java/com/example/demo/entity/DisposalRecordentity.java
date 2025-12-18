@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import java.time.LocalDateTime;
 
 @Entity
 public class  disposalRecordentity{
@@ -78,7 +78,7 @@ public class  disposalRecordentity{
     }
     public void setcreatedAt(String createdAt){
         this.createdAt = createdAt;
-       
+    }
 
     public disposalRecordentity(Long id,String asset,String disposalMethod,String disposalDate,String approvedBy,String notes,String createdAt)
     {
@@ -89,7 +89,6 @@ public class  disposalRecordentity{
         this.approvedBy = approvedBy;
         this.notes = notes;
         this.createdAt = createdAt;
-
     }
 
     public disposalRecordentity(){
