@@ -94,7 +94,16 @@ public class Assetentity {
     public class Assetentity {
         purchaseDate = LocalDate.now();
         createdAt = LocalDateTime.now();
-        
+        createdAt = new Timestamp(System.LocalDateTime.now());
+        assetTag = assetTag;
+        assetType = assetType;
+        model = model;
+        purchaseDate = purchaseDate;
+        status = status;
+        currentHolder = currentHolder;
+        createdAt = createdAt;
+    }
+
     }
 }    
    
