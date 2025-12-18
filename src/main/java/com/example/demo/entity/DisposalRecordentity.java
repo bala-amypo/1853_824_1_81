@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 
 
 @Entity
-public class  {
+public class  DisposalRecordentity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,13 +15,15 @@ public class  {
     private String asset;
 
     
-    private String eventType;
+    private String DisposalMethod;
 
-    private String eventDescription;
+    private String DisposalDate;
 
-    private String eventDate;
+    private String approvedBy;
 
-    private String performedBy;
+    private String notes;
+
+    private String 
 
  
 
