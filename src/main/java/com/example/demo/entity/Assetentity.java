@@ -92,16 +92,16 @@ public class Assetentity {
         this.createdAt = createdAt;
     }
     public class Assetentity {
-        purchaseDate = LocalDate.now();
-        createdAt = LocalDateTime.now();
-        createdAt = new Timestamp(System.LocalDateTime.now());
-        assetTag = assetTag;
-        assetType = assetType;
-        model = model;
-        purchaseDate = purchaseDate;
-        status = status;
-        currentHolder = currentHolder;
-        createdAt = createdAt;
+        this.purchaseDate = LocalDate.now();
+        this. createdAt = LocalDateTime.now();
+         this.createdAt = new Timestamp(System.LocalDateTime.now());
+         this.assetTag = assetTag;
+         this.assetType = assetType;
+         this.model = model;
+         this.purchaseDate = purchaseDate;
+         this.status = status;
+        this. currentHolder = currentHolder;
+         this.createdAt = createdAt;
     }
 
     }
