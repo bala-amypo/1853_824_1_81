@@ -2,7 +2,6 @@ package com.example.demo.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,48 +20,38 @@ public class LifecycleEvententity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "asset_id", nullable = false)
-    private  LifecycleEvententity ;
-
     @Column(name = "event_type", nullable = false)
     private String eventType;
-  
-
-    @Column(name = "event_description", nullable = false)
-    private String eventDescription;
 
     @Column(name = "event_date", nullable = false)
     private LocalDateTime eventDate;
 
-  
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "performed_by", nullable = false)
-    private User performedBy;
+    @ManyToOne
+    @JoinColumn(name = "asset_id", nullable = false)
+    private AssetEntity asset;
 
-  
+    @ManyToOne
+    @JoinColumn(name = "performed_by", nullable = false)
+    private UserEntity user;
+
+    @Column(name = "remarks")
+    private String remarks;
+
     @PrePersist
     public void prePersist() {
-        if (this.eventDate == null) {
-            this.eventDate = LocalDateTime.now();
+        if (eventDate == null) {
+            eventDate = LocalDateTime.now();
         }
     }
 
- 
+    // Getters and Setters
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Asset getAsset() {
-        return asset;
-    }
-
-    public void setAsset(Asset asset) {
-        this.asset = asset;
     }
 
     public String getEventType() {
@@ -73,14 +62,6 @@ public class LifecycleEvententity {
         this.eventType = eventType;
     }
 
-    public String getEventDescription() {
-        return eventDescription;
-    }
-
-    public void setEventDescription(String eventDescription) {
-        this.eventDescription = eventDescription;
-    }
-
     public LocalDateTime getEventDate() {
         return eventDate;
     }
@@ -89,11 +70,27 @@ public class LifecycleEvententity {
         this.eventDate = eventDate;
     }
 
-    public User getPerformedBy() {
-        return performedBy;
+    public AssetEntity getAsset() {
+        return asset;
     }
 
-    public void setPerformedBy(User performedBy) {
-        this.performedBy = performedBy;
+    public void setAsset(AssetEntity asset) {
+        this.asset = asset;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
 }
