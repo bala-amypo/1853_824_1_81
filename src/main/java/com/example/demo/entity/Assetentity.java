@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "assets")
-public class AssetEntity {
+public class Assetentity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +32,7 @@ public class AssetEntity {
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    /* ---------- Lifecycle Callback ---------- */
+   
     @PrePersist
     public void onCreate() {
         if (purchaseDate == null) {
@@ -47,11 +47,11 @@ public class AssetEntity {
     }
 
     /* ---------- Constructors ---------- */
-    public AssetEntity() {
+    public Assetentity() {
         // Required by JPA
     }
 
-    public AssetEntity(String assetTag, String assetType, String model,
+    public Assetentity(String assetTag, String assetType, String model,
                        LocalDate purchaseDate, String status,
                        String currentHolder) {
         this.assetTag = assetTag;
