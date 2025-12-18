@@ -23,7 +23,7 @@ public class LifecycleEvententity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "asset_id", nullable = false)
-    private Asset asset;
+    private  LifecycleEvententity ;
 
     @Column(name = "event_type", nullable = false)
     private String eventType;
