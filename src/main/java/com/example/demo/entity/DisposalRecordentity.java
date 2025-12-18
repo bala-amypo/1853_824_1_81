@@ -65,8 +65,8 @@ public class  DisposalRecordentity{
         this.DisposalMethod = DisposalMethod;
     }
 
-    public void setEventDescription(String eventDescription) {
-        this.eventDescription = eventDescription;
+    public void setdisposalDate(String disposalDate) {
+        this.eventDescription = disposalDate;
     }
 
     public void setEventDate(String eventDate) {
