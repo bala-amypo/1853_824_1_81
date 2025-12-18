@@ -93,16 +93,16 @@ public class Assetentity {
     }
     public class Assetentity {
        
-        this.assetTag = assetTag
-        this.assetType = assetType
-        this.model = model
-        this.purchaseDate = purchaseDate
-        this.status = status
-        this. currentHolder = currentHolder
-        this.createdAt = createdAt
+        this.assetTag = assetTag ;
+        this.assetType = assetType;
+        this.model = model;
+        this.purchaseDate = purchaseDate;
+        this.status = status;
+        this. currentHolder = currentHolder;
+        this.createdAt = createdAt;
     }
     public Assetentity(){
-        
+
     }
     }
 }    
