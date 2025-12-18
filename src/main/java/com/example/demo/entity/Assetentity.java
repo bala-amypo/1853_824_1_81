@@ -46,7 +46,7 @@ public class Assetentity {
         }
     }
 
-    /* ---------- Constructors ---------- */
+   
     public Assetentity() {
         // Required by JPA
     }
@@ -62,7 +62,7 @@ public class Assetentity {
         this.currentHolder = currentHolder;
     }
 
-    /* ---------- Getters & Setters ---------- */
+
     public Long getId() {
         return id;
     }
