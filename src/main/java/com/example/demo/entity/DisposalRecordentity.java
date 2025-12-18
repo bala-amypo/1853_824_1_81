@@ -1,96 +1,140 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-public class  disposalRecordentity{
+public class DisposalRecordentity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String asset;
 
-    
-    private String disposalMethod;
+    // One-to-One with Asset
+    @OneToOne
+    @JoinColumn(name = "asset_id", nullable = false)
+    private Assetentity asset;
 
-    private String disposalDate;
+    // Disposal method (RECYCLED / SOLD / SCRAPPED / RETURNED)
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private DisposalMethod disposalMethod;
 
-    private String approvedBy;
+    @Column(nullable = false)
+    private LocalDate disposalDate;
+
+    // Many-to-One with User
+    @ManyToOne
+    @JoinColumn(name = "approved_by", nullable = false)
+    private Userentity approvedBy;
 
     private String notes;
 
-    private LocalDateTime CreatedAt;
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
- 
+    // ---------- Constructors ----------
 
-
-
-    public Long getId() {
-        return id;
+    public DisposalRecordentity() {
     }
 
-    public String getAsset() {
-        return asset;
-    }
-
-    public String getdisposalMethode() {
-        return getdisposalMethode;
-    }
-
-    public String getapprovedBy() {
-        return getapprovedBy;
-    }
-
-    public String getnotes() {
-        return notes;
-    }
-
-    public LocalDateTime getcreatedAt() {
-        return createdAt;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setAsset(String asset) {
-        this.asset = asset;
-    }
-
-    public void setDisposalMethod(String disposalMethod) {
-        this.DisposalMethod = DisposalMethod;
-    }
-
-    public void setdisposalDate(String disposalDate) {
-        this.disposalDate = disposalDate;
-    }
-
-    public void setapprovedBy(String approvedBy) {
-        this.approvedBy = approvedBy;
-    }
-
-    public void setnotes(String notes) {
-        this.notes = notes;
-    }
-    public void setcreatedAt(LocalDateTime createdAt){
-        this.createdAt = createdAt;
-    }
-
-    public disposalRecordentity(Long id,String asset,String disposalMethod,String disposalDate,String approvedBy,String notes,LocalDateTime createdAt)
-    {
-        this.id = id;
+    public DisposalRecordentity(
+            Assetentity asset,
+            DisposalMethod disposalMethod,
+            LocalDate disposalDate,
+            Userentity approvedBy,
+            String notes
+    ) {
         this.asset = asset;
         this.disposalMethod = disposalMethod;
         this.disposalDate = disposalDate;
         this.approvedBy = approvedBy;
         this.notes = notes;
-        this.createdAt=createdAt;
     }
 
-    public disposalRecordentity(){
+    // ---------- Business Rules ----------
+
+    @PrePersist
+    public void prePersist() {
+
+        // auto-generate createdAt
+        this.createdAt = LocalDateTime.now();
+
+        // disposalDate cannot be future
+        if (disposalDate.isAfter(LocalDate.now())) {
+            throw new IllegalStateException("Disposal date cannot be in the future");
+        }
+
+        // approvedBy must be ADMIN
+        if (approvedBy == null || !"ADMIN".equalsIgnoreCase(approvedBy.getRole())) {
+            throw new IllegalStateException("Disposal must be approved by ADMIN");
+        }
+
+        // auto-update asset status
+        asset.setStatus("DISPOSED");
+    }
+
+    // ---------- Getters ----------
+
+    public Long getId() {
+        return id;
+    }
+
+    public Assetentity getAsset() {
+        return asset;
+    }
+
+    public DisposalMethod getDisposalMethod() {
+        return disposalMethod;
+    }
+
+    public LocalDate getDisposalDate() {
+        return disposalDate;
+    }
+
+    public Userentity getApprovedBy() {
+        return approvedBy;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    // ---------- Setters ----------
+
+    public void setAsset(Assetentity asset) {
+        this.asset = asset;
+    }
+
+    public void setDisposalMethod(DisposalMethod disposalMethod) {
+        this.disposalMethod = disposalMethod;
+    }
+
+    public void setDisposalDate(LocalDate disposalDate) {
+        this.disposalDate = disposalDate;
+    }
+
+    public void setApprovedBy(Userentity approvedBy) {
+        this.approvedBy = approvedBy;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 }
