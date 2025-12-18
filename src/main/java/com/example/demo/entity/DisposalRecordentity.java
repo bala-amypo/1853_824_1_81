@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 
 
 @Entity
-public class  DisposalRecordentity{
+public class  disposalRecordentity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,9 +15,9 @@ public class  DisposalRecordentity{
     private String asset;
 
     
-    private String DisposalMethod;
+    private String disposalMethod;
 
-    private String DisposalDate;
+    private String disposalDate;
 
     private String approvedBy;
 
@@ -61,7 +61,7 @@ public class  DisposalRecordentity{
         this.asset = asset;
     }
 
-    public void setDisposalMethod(String DisposalMethod) {
+    public void setDisposalMethod(String disposalMethod) {
         this.DisposalMethod = DisposalMethod;
     }
 
@@ -80,7 +80,7 @@ public class  DisposalRecordentity{
         this.createdAt = createdAt;
        
 
-    public DisposalRecordentity(Long id,String asset,String disposalMethod,String disposalDate,String approvedBy,String notes,String createdAt)
+    public disposalRecordentity(Long id,String asset,String disposalMethod,String disposalDate,String approvedBy,String notes,String createdAt)
     {
         this.id = id;
         this.asset = asset;
@@ -92,6 +92,6 @@ public class  DisposalRecordentity{
 
     }
 
-    public DisposalRecordentity(){
+    public disposalRecordEntity(){
     }
 }
