@@ -23,7 +23,7 @@ public class  disposalRecordentity{
 
     private String notes;
 
-    private String CreatedAt ;
+    private LocalDateTime CreatedAt;
 
  
 
@@ -49,7 +49,7 @@ public class  disposalRecordentity{
         return notes;
     }
 
-    public String getcreatedAt() {
+    public LocalDateTime getcreatedAt() {
         return createdAt;
     }
 
@@ -76,11 +76,11 @@ public class  disposalRecordentity{
     public void setnotes(String notes) {
         this.notes = notes;
     }
-    public void setcreatedAt(String createdAt){
+    public void setcreatedAt(LocalDateTime createdAt){
         this.createdAt = createdAt;
     }
 
-    public disposalRecordentity(Long id,String asset,String disposalMethod,String disposalDate,String approvedBy,String notes,String createdAt)
+    public disposalRecordentity(Long id,String asset,String disposalMethod,String disposalDate,String approvedBy,String notes,LocalDateTime createdAt)
     {
         this.id = id;
         this.asset = asset;
@@ -88,7 +88,7 @@ public class  disposalRecordentity{
         this.disposalDate = disposalDate;
         this.approvedBy = approvedBy;
         this.notes = notes;
-        this.createdAt = createdAt;
+        this.createdAt=createdAt;
     }
 
     public disposalRecordentity(){
