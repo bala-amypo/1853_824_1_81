@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "lifecycle_events")
-public class LifecycleEvententity {
+public class LifecycleEventEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class LifecycleEvententity {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "asset_id", nullable = false)
-    private Asset asset;
+    private AssetEntity asset;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "event_type", nullable = false)
@@ -38,7 +38,7 @@ public class LifecycleEvententity {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "performed_by", nullable = false)
-    private User performedBy;
+    private UserEntity performedBy;
 
     @PrePersist
     public void prePersist() {
@@ -47,48 +47,5 @@ public class LifecycleEvententity {
         }
     }
 
-    // Getters and Setters
 
-    public Long getId() {
-        return id;
-    }
-
-    public Asset getAsset() {
-        return asset;
-    }
-
-    public void setAsset(Asset asset) {
-        this.asset = asset;
-    }
-
-    public EventType getEventType() {
-        return eventType;
-    }
-
-    public void setEventType(EventType eventType) {
-        this.eventType = eventType;
-    }
-
-    public String getEventDescription() {
-        return eventDescription;
-    }
-
-    public void setEventDescription(String eventDescription) {
-        if (eventDescription == null || eventDescription.trim().isEmpty()) {
-            throw new IllegalArgumentException("eventDescription cannot be empty");
-        }
-        this.eventDescription = eventDescription;
-    }
-
-    public LocalDateTime getEventDate() {
-        return eventDate;
-    }
-
-    public User getPerformedBy() {
-        return performedBy;
-    }
-
-    public void setPerformedBy(User performedBy) {
-        this.performedBy = performedBy;
-    }
 }
