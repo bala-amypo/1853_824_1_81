@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+
+import java.time.LocalDateTime;
 
 @Entity
 public class LifecycleEventEntity {
@@ -12,24 +15,47 @@ public class LifecycleEventEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String asset;
+
+    
     private String eventType;
+
     private String eventDescription;
-    private String eventDate;
+
+    private LocalDateTime eventDate;
+
+    // Username or user id
     private String performedBy;
 
-
-    public LifecycleEventEntity(){
-
+    // Default constructor (required by JPA)
+    public LifecycleEventEntity() {
     }
 
-    public LifecycleEventEntity(Long id,String asset,String eventType,String eventDescription,String eventDate,String performedBy){
-        this.id=id;
-        this.asset=asset;
-        this.eventType=eventType;
-        this.eventDescription=eventDescription;
-        this.eventDate=eventDate;
-        this.performedBy=performedBy;
+    // Parameterized constructor
+    public LifecycleEventEntity(
+            Long id,
+            String asset,
+            String eventType,
+            String eventDescription,
+            LocalDateTime eventDate,
+            String performedBy
+    ) {
+        this.id = id;
+        this.asset = asset;
+        this.eventType = eventType;
+        this.eventDescription = eventDescription;
+        this.eventDate = eventDate;
+        this.performedBy = performedBy;
     }
+
+    // Auto-generate eventDate before insert
+    @PrePersist
+    public void prePersist() {
+        if (eventDate == null) {
+            eventDate = LocalDateTime.now();
+        }
+    }
+
+    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -47,7 +73,7 @@ public class LifecycleEventEntity {
         return eventDescription;
     }
 
-    public String getEventDate() {
+    public LocalDateTime getEventDate() {
         return eventDate;
     }
 
@@ -71,18 +97,11 @@ public class LifecycleEventEntity {
         this.eventDescription = eventDescription;
     }
 
-    public void setEventDate(String eventDate) {
+    public void setEventDate(LocalDateTime eventDate) {
         this.eventDate = eventDate;
     }
 
     public void setPerformedBy(String performedBy) {
         this.performedBy = performedBy;
     }
-
-    
-  
-    
-    
-
-
 }
