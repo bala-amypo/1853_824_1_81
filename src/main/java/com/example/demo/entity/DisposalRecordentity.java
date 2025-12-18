@@ -23,7 +23,7 @@ public class  DisposalRecordentity{
 
     private String notes;
 
-    private String 
+    private String CreatedAt ;
 
  
 
@@ -37,7 +37,7 @@ public class  DisposalRecordentity{
         return asset;
     }
 
-    public String getEventType() {
+    public String getdisposalMethode() {
         return eventType;
     }
 
