@@ -80,15 +80,20 @@ public class  DisposalRecordentity{
         this.createdAt = createdAt;
        
 
-    public DiposalRecordentity(Long id,String asset,String disposalMethod,String disposalDate,String approvedBy,String notes,String createdAt,)
-    {
-        this.id = id;
-        this.asset = asset;
-        this.DisposalMethod = DisposalMethod;
-        this.disposalDate = disposalDate;
-        this.approvedBy = approvedBy;
-        this.notes = notes;
-        this.createdAt = createdAt;
+   public DisposalRecordEntity(
+        Asset asset,
+        String disposalMethod,
+        LocalDate disposalDate,
+        User approvedBy,
+        String notes
+) {
+    this.asset = asset;
+    this.disposalMethod = disposalMethod;
+    this.disposalDate = disposalDate;
+    this.approvedBy = approvedBy;
+    this.notes = notes;
+}
+
 
     }
 
