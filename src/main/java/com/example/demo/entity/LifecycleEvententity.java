@@ -19,6 +19,18 @@ public class LifecycleEventEntity {
     private String eventDate;
     private String performedBy;
 
+
+    public LifecycleEventEntity(){
+
+    }
+
+    public LifecycleEventEntity(Long id,String asset,String eventType,String eventDescription,String eventDate,String performedBy){
+        this.id=id;
+        this.asset=asset;
+        this.eventType=eventType;
+        this.eventDescription=
+    }
+  
     
     
 
