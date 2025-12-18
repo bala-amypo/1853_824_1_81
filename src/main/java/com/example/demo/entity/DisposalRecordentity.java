@@ -41,16 +41,16 @@ public class  DisposalRecordentity{
         return getdisposalMethode;
     }
 
-    public String get() {
-        return eventDescription;
+    public String getapprovedBy() {
+        return getapprovedBy;
     }
 
-    public String getEventDate() {
-        return eventDate;
+    public String getnotes() {
+        return notes;
     }
 
-    public String getPerformedBy() {
-        return performedBy;
+    public String getcreatedAt() {
+        return createdAt;
     }
 
     public void setId(Long id) {
@@ -61,8 +61,8 @@ public class  DisposalRecordentity{
         this.asset = asset;
     }
 
-    public void setEventType(String eventType) {
-        this.eventType = eventType;
+    public void setDisposalMethod(String DisposalMethod) {
+        this.DisposalMethod = DisposalMethod;
     }
 
     public void setEventDescription(String eventDescription) {
