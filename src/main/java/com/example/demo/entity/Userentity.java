@@ -10,7 +10,7 @@ import jakarta.persistence.*;
         @UniqueConstraint(columnNames = "email")
     }
 )
-public class User {
+public class Userentity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,14 +27,14 @@ public class User {
 
     @Column(nullable = false)
     private String role;
-    // ADMIN / USER
+
 
     @Column(nullable = false)
     private String password;
 
-    public User() {}
+    public Userentity() {}
 
-    public User(String fullName, String email, String department,
+    public Userentity(String fullName, String email, String department,
                 String role, String password) {
         this.fullName = fullName;
         this.email = email;
@@ -43,7 +43,6 @@ public class User {
         this.password = password;
     }
 
-    /* ---------- Getters & Setters ---------- */
     public Long getId() {
         return id;
     }
