@@ -1,15 +1,11 @@
 package com.example.demo.entity;
-
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
 
-import java.time.LocalDateTime;
 
 @Entity
-public class LifecycleEventEntity {
+public class Lifecycleevententity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,23 +17,17 @@ public class LifecycleEventEntity {
 
     private String eventDescription;
 
-    private LocalDateTime eventDate;
+    private String eventDate;
 
     // Username or user id
     private String performedBy;
 
     // Default constructor (required by JPA)
-    public LifecycleEventEntity() {
+    public LifecycleEvententity() {
     }
 
     // Parameterized constructor
-    public LifecycleEventEntity(
-            Long id,
-            String asset,
-            String eventType,
-            String eventDescription,
-            LocalDateTime eventDate,
-            String performedBy
+    public LifecycleEvententity(Long id,String asset,String eventType,String eventDescription,LocalDateTime eventDate,String performedBy
     ) {
         this.id = id;
         this.asset = asset;
