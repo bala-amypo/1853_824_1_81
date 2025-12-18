@@ -100,7 +100,7 @@ public class Assetentity {
          this.model = model;
          this.purchaseDate = purchaseDate;
          this.status = status;
-        this. currentHolder = currentHolder;
+         this. currentHolder = currentHolder;
          this.createdAt = createdAt;
     }
 
