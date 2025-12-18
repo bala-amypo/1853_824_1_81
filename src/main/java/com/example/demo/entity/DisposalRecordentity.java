@@ -80,7 +80,7 @@ public class  DisposalRecordentity{
         this.createdAt = createdAt;
        
 
-   public DisposalRecordEntity(
+   public DisposalRecordentity(
         Asset asset,
         String disposalMethod,
         LocalDate disposalDate,
