@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
@@ -28,11 +27,11 @@ public class LifecycleEvententity {
 
     @ManyToOne
     @JoinColumn(name = "asset_id", nullable = false)
-    private AssetEntity asset;
+    private Assetentity asset;
 
     @ManyToOne
     @JoinColumn(name = "performed_by", nullable = false)
-    private UserEntity user;
+    private Userentity user;
 
     @Column(name = "remarks")
     private String remarks;
@@ -44,7 +43,7 @@ public class LifecycleEvententity {
         }
     }
 
-    // Getters and Setters
+    // -------- Getters and Setters --------
 
     public Long getId() {
         return id;
@@ -70,19 +69,19 @@ public class LifecycleEvententity {
         this.eventDate = eventDate;
     }
 
-    public AssetEntity getAsset() {
+    public Assetentity getAsset() {
         return asset;
     }
 
-    public void setAsset(AssetEntity asset) {
+    public void setAsset(Assetentity asset) {
         this.asset = asset;
     }
 
-    public UserEntity getUser() {
+    public Userentity getUser() {
         return user;
     }
 
-    public void setUser(UserEntity user) {
+    public void setUser(Userentity user) {
         this.user = user;
     }
 
