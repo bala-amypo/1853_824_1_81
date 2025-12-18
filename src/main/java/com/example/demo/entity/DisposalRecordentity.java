@@ -84,19 +84,11 @@ public class  DisposalRecordentity{
     {
         this.id = id;
         this.asset = asset;
-       private Long id;
-    private String asset;
+        this.DisposalMethod = DisposalMethod;
+         this.disposalDate = disposalDate;
+         
 
-    
-    private String DisposalMethod;
 
-    private String DisposalDate;
-
-    private String approvedBy;
-
-    private String notes;
-
-    private String CreatedAt ;
 
     }
 
