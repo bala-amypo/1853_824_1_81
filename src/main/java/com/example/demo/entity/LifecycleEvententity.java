@@ -19,33 +19,11 @@ public class Lifecycleevententity {
 
     private String eventDate;
 
-    // Username or user id
     private String performedBy;
 
-    // Default constructor (required by JPA)
-    public LifecycleEvententity() {
-    }
+ 
 
-    // Parameterized constructor
-    public LifecycleEvententity(Long id,String asset,String eventType,String eventDescription,LocalDateTime eventDate,String performedBy
-    ) {
-        this.id = id;
-        this.asset = asset;
-        this.eventType = eventType;
-        this.eventDescription = eventDescription;
-        this.eventDate = eventDate;
-        this.performedBy = performedBy;
-    }
 
-    // Auto-generate eventDate before insert
-    @PrePersist
-    public void prePersist() {
-        if (eventDate == null) {
-            eventDate = LocalDateTime.now();
-        }
-    }
-
-    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -63,7 +41,7 @@ public class Lifecycleevententity {
         return eventDescription;
     }
 
-    public LocalDateTime getEventDate() {
+    public String getEventDate() {
         return eventDate;
     }
 
@@ -87,11 +65,24 @@ public class Lifecycleevententity {
         this.eventDescription = eventDescription;
     }
 
-    public void setEventDate(LocalDateTime eventDate) {
+    public void setEventDate(String eventDate) {
         this.eventDate = eventDate;
     }
 
     public void setPerformedBy(String performedBy) {
         this.performedBy = performedBy;
+    }
+       
+
+    public LifecycleEvententity(Long id,String asset,String eventType,String eventDescription,String eventDate,String performedBy){
+        this.id = id;
+        this.asset = asset;
+        this.eventType = eventType;
+        this.eventDescription = eventDescription;
+        this.eventDate = eventDate;
+        this.performedBy = performedBy;
+    }
+
+    public LifecycleEvententity(){
     }
 }
