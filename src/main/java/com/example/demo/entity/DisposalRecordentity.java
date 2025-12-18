@@ -38,10 +38,10 @@ public class  DisposalRecordentity{
     }
 
     public String getdisposalMethode() {
-        return eventType;
+        return getdisposalMethode;
     }
 
-    public String getEventDescription() {
+    public String get() {
         return eventDescription;
     }
 
