@@ -91,5 +91,10 @@ public class Assetentity {
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
+    public class Assetentity {
+        purchaseDate = LocalDate.now();
+        createdAt = LocalDateTime.now();
+        
+    }
 }    
    
