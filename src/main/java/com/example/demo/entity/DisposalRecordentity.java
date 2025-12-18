@@ -76,7 +76,8 @@ public class  DisposalRecordentity{
     public void setnotes(String notes) {
         this.notes = notes;
     }
-    public void 
+    public void setcreatedAt(String createdAt){
+        this.createdAt = created
        
 
     public LifecycleEvententity(Long id,String asset,String eventType,String eventDescription,String eventDate,String performedBy){
