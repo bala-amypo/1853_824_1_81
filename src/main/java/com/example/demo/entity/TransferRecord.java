@@ -11,7 +11,7 @@ public  class TransferRecord{
     private Long id;
     private String asset;
     private String fromDepartment;
-    private Struing toDepartment;
+    private String toDepartment;
     private String transferDate;
     private String approvedBy;
 
@@ -19,7 +19,7 @@ public  class TransferRecord{
    public TransferRecord(){
 
    }
-   public TransferRecord(Long id ,String asset,String fromDepartment,Strring toDepartment, String transferDate, String approvedBy){
+   public TransferRecord(Long id ,String asset,String fromDepartment,String toDepartment, String transferDate, String approvedBy){
      this.id=id;
     this.asset=asset;
     this.fromDepartment=fromDepartment;
