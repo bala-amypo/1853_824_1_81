@@ -19,7 +19,7 @@ public  class TransferRecord{
    public TransferRecord(){
 
    }
-   public TransferRecord(Long id; String asset;String fromDepartment;Struing toDepartment; String transferDate; String approvedBy){
+   public TransferRecord(Long id ,String asset,String fromDepartment,Struing toDepartment, String transferDate, String approvedBy){
      this.id=id;
     this.asset=asset;
     this.fromDepartment=formDepartment;
