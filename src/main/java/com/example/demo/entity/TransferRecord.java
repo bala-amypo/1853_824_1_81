@@ -7,4 +7,8 @@ import jakarta.persistence.Id;
 
 @Entity
 @Data
-public TransferRecord
+public  class TransferRecord{
+    private Long id;
+    private String asset;
+    private String 
+}
