@@ -1,11 +1,18 @@
 package com.example.demo.entity;
-
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.PrePersist;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 public class DisposalRecord {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,7 +21,7 @@ public class DisposalRecord {
     @JoinColumn(name = "asset_id")
     private Asset asset;
 
-    private String disposalMethod; 
+    private String disposalMethod; // RECYCLED, SOLD, SCRAPPED, RETURNED
 
     private LocalDate disposalDate;
 
@@ -32,6 +39,8 @@ public class DisposalRecord {
         this.createdAt = LocalDateTime.now();
     }
 
+    // --- Getters and Setters ---
+
     public Long getId() {
         return id;
     }
@@ -44,6 +53,7 @@ public class DisposalRecord {
         return asset;
     }
 
+    // Logic: Setting a disposal record must automatically switch the Asset status to DISPOSED.
     public void setAsset(Asset asset) {
         this.asset = asset;
         if (asset != null) {
