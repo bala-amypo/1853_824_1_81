@@ -22,9 +22,9 @@ public  class TransferRecord{
    public TransferRecord(Long id ,String asset,String fromDepartment,Struing toDepartment, String transferDate, String approvedBy){
      this.id=id;
     this.asset=asset;
-    this.fromDepartment=formDepartment;
+    this.fromDepartment=fromDepartment;
     this.toDepartment=toDepartment;
-    this.transferDate=transferData;
+    this.transferDate=transferDate;
      this.approvedBy=approvedBy;
    }
 }
