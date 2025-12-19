@@ -1,16 +1,21 @@
 package com.example.demo.entity;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.Table;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "disposal_records")
 public class DisposalRecord {
 
     @Id
@@ -18,20 +23,45 @@ public class DisposalRecord {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "asset_id")
+    @JoinColumn(name = "asset_id", nullable = false)
     private Asset asset;
 
-    private String disposalMethod; // RECYCLED, SOLD, SCRAPPED, RETURNED
+    @Column(name = "disposal_method", nullable = false)
+    private String disposalMethod;
 
+    @Column(name = "disposal_date", nullable = false)
     private LocalDate disposalDate;
 
     @ManyToOne
-    @JoinColumn(name = "approved_by_id")
+    @JoinColumn(name = "approved_by_id", nullable = false)
     private User approvedBy;
 
+    @Column(name = "notes")
     private String notes;
 
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+    public DisposalRecord() {
+    }
+
+    public DisposalRecord(
+            Long id,
+            Asset asset,
+            String disposalMethod,
+            LocalDate disposalDate,
+            User approvedBy,
+            String notes,
+            LocalDateTime createdAt
+    ) {
+        this.id = id;
+        this.asset = asset;
+        this.disposalMethod = disposalMethod;
+        this.disposalDate = disposalDate;
+        this.approvedBy = approvedBy;
+        this.notes = notes;
+        this.createdAt = createdAt;
+    }
 
     // Logic: Use @PrePersist to auto-generate createdAt
     @PrePersist
