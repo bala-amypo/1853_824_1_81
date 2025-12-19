@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 
 
 @Entity
-public class LifecycleEvententity {
+public class LifecycleEvent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

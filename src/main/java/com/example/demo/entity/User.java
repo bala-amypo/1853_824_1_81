@@ -15,7 +15,7 @@ import jakarta.persistence.UniqueConstraint;
         @UniqueConstraint(columnNames = "email")
     }
 )
-public class Userentity {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,9 +37,9 @@ public class Userentity {
     @Column(nullable = false)
     private String password;
 
-    public Userentity() {}
+    public User() {}
 
-    public Userentity(String fullName, String email, String department,
+    public User(String fullName, String email, String department,
                 String role, String password) {
         this.fullName = fullName;
         this.email = email;
