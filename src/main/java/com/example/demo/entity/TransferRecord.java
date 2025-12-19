@@ -14,5 +14,17 @@ public  class TransferRecord{
     private Struing toDepartement;
     private String transferDate;
     private String approvedBy;
-    
+
+
+   public TransferRecord(){
+
+   }
+   public TransferRecord(Long id; String asset;String fromDepartment;Struing toDepartement; String transferDate; String approvedBy;){
+     this.id=id;
+    this.asset=asset;
+    this.fromDepartment=formDepartment;
+    private Struing toDepartement;
+    private String transferDate;
+    private String approvedBy;
+   }
 }
