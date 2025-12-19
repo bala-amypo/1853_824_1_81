@@ -9,11 +9,8 @@ import jakarta.persistence.Table;
 
 import java.time.LocalDate;
 
-import lombok.Data;
-
 @Entity
 @Table(name = "transfer_records")
-@Data
 public class TransferRecord {
 
     @Id
@@ -34,12 +31,9 @@ public class TransferRecord {
 
     @Column(name = "approved_by", nullable = false)
     private String approvedBy;
-
-    // No-arg constructor (required by JPA)
     public TransferRecord() {
     }
 
-    // All-args constructor
     public TransferRecord(
             Long id,
             String asset,
@@ -53,6 +47,55 @@ public class TransferRecord {
         this.fromDepartment = fromDepartment;
         this.toDepartment = toDepartment;
         this.transferDate = transferDate;
+        this.approvedBy = approvedBy;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getAsset() {
+        return asset;
+    }
+
+    public void setAsset(String asset) {
+        this.asset = asset;
+    }
+
+    public String getFromDepartment() {
+        return fromDepartment;
+    }
+
+    public void setFromDepartment(String fromDepartment) {
+        this.fromDepartment = fromDepartment;
+    }
+
+    public String getToDepartment() {
+        return toDepartment;
+    }
+
+    public void setToDepartment(String toDepartment) {
+        this.toDepartment = toDepartment;
+    }
+
+    public LocalDate getTransferDate() {
+        return transferDate;
+    }
+
+    public void setTransferDate(LocalDate transferDate) {
+        this.transferDate = transferDate;
+    }
+
+    public String getApprovedBy() {
+        return approvedBy;
+    }
+
+    public void setApprovedBy(String approvedBy) {
         this.approvedBy = approvedBy;
     }
 }
