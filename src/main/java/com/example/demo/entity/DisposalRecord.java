@@ -1,1 +1,2 @@
-package com.example
+package com.example.demo.entity;
+
