@@ -85,51 +85,5 @@ public class TransferRecordentity {
         }
     }
 
-    // -------- Getters --------
 
-    public Long getId() {
-        return id;
-    }
-
-    public Assetentity getAsset() {
-        return asset;
-    }
-
-    public String getFromDepartment() {
-        return fromDepartment;
-    }
-
-    public String getToDepartment() {
-        return toDepartment;
-    }
-
-    public LocalDate getTransferDate() {
-        return transferDate;
-    }
-
-    public Userentity getApprovedBy() {
-        return approvedBy;
-    }
-
-    // -------- Setters --------
-
-    public void setAsset(Assetentity asset) {
-        this.asset = asset;
-    }
-
-    public void setFromDepartment(String fromDepartment) {
-        this.fromDepartment = fromDepartment;
-    }
-
-    public void setToDepartment(String toDepartment) {
-        this.toDepartment = toDepartment;
-    }
-
-    public void setTransferDate(LocalDate transferDate) {
-        this.transferDate = transferDate;
-    }
-
-    public void setApprovedBy(Userentity approvedBy) {
-        this.approvedBy = approvedBy;
-    }
 }
