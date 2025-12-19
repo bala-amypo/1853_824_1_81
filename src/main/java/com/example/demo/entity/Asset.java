@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "assets")
-public class Assetentity {
+public class Asset {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,10 +47,10 @@ public class Assetentity {
     }
 
    
-    public Assetentity() {
+    public Asset() {
     }
 
-    public Assetentity(String assetTag, String assetType, String model,
+    public Asset(String assetTag, String assetType, String model,
                        LocalDate purchaseDate, String status,
                        String currentHolder) {
         this.assetTag = assetTag;

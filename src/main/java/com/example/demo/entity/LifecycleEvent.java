@@ -76,7 +76,7 @@ public class LifecycleEvent {
     }
        
 
-    public LifecycleEvententity(Long id,String asset,String eventType,String eventDescription,String eventDate,String performedBy){
+    public LifecycleEvent(Long id,String asset,String eventType,String eventDescription,String eventDate,String performedBy){
         this.id = id;
         this.asset = asset;
         this.eventType = eventType;
@@ -85,6 +85,6 @@ public class LifecycleEvent {
         this.performedBy = performedBy;
     }
 
-    public LifecycleEvententity(){
+    public LifecycleEvent(){
     }
 }
