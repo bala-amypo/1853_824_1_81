@@ -10,5 +10,9 @@ import jakarta.persistence.Id;
 public  class TransferRecord{
     private Long id;
     private String asset;
-    private String 
+    private String fromDepartment;
+    private Struing toDepartement;
+    private String transferDate;
+    private String approvedBy;
+    
 }
