@@ -44,8 +44,6 @@ public class User {
     @OneToMany(mappedBy = "currentHolder")
     private List<Asset> assets;
 
-    // ---------- Constructors ----------
-
     public User() {
     }
 
@@ -60,8 +58,6 @@ public class User {
         this.createdAt = createdAt;
     }
 
-    // ---------- PrePersist ----------
-
     @PrePersist
     public void prePersist() {
         if (this.role == null) {
@@ -71,8 +67,6 @@ public class User {
             this.createdAt = LocalDateTime.now();
         }
     }
-
-    // ---------- Getters and Setters ----------
 
     public Long getId() {
         return id;

@@ -32,8 +32,6 @@ public class TransferRecord {
     @ManyToOne(optional = false)
     private User approvedBy;
 
-    // ---------- Constructors ----------
-
     public TransferRecord() {
     }
 
@@ -47,9 +45,6 @@ public class TransferRecord {
         this.transferDate = transferDate;
         this.approvedBy = approvedBy;
     }
-
-    // ---------- Getters and Setters ----------
-
     public Long getId() {
         return id;
     }

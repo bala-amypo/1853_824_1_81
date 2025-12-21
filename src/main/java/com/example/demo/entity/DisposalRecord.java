@@ -34,8 +34,6 @@ public class DisposalRecord {
 
     private LocalDateTime createdAt;
 
-    // ---------- Constructors ----------
-
     public DisposalRecord() {
     }
 
@@ -51,7 +49,6 @@ public class DisposalRecord {
         this.createdAt = createdAt;
     }
 
-    // ---------- PrePersist ----------
 
     @PrePersist
     public void prePersist() {
@@ -59,8 +56,6 @@ public class DisposalRecord {
             this.createdAt = LocalDateTime.now();
         }
     }
-
-    // ---------- Getters and Setters ----------
 
     public Long getId() {
         return id;

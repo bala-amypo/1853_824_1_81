@@ -33,8 +33,6 @@ public class LifecycleEvent {
     @ManyToOne(optional = false)
     private User performedBy;
 
-    // ---------- Constructors ----------
-
     public LifecycleEvent() {
     }
 
@@ -49,16 +47,12 @@ public class LifecycleEvent {
         this.performedBy = performedBy;
     }
 
-    // ---------- PrePersist ----------
-
     @PrePersist
     public void prePersist() {
         if (this.eventDate == null) {
             this.eventDate = LocalDateTime.now();
         }
     }
-
-    // ---------- Getters and Setters ----------
 
     public Long getId() {
         return id;
