@@ -1,12 +1,16 @@
-package com.example.demo.repository;
+package com.example.demo.entity;
 
-import jakarta.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
-@Table(name = "assets")
-public class Asset{
+public class Asset {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
