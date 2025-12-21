@@ -1,15 +1,18 @@
+package com.example.demo.entity;
 
-
-
-package com.example.demo.repository;
-
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.Table;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "assets")
-public class Asset{
+public class Asset {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +38,6 @@ public class Asset{
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-   
     @PrePersist
     public void onCreate() {
         if (purchaseDate == null) {
@@ -49,13 +51,15 @@ public class Asset{
         }
     }
 
-   
     public Asset() {
     }
 
-    public Asset(String assetTag, String assetType, String model,
-                       LocalDate purchaseDate, String status,
-                       String currentHolder) {
+    public Asset(String assetTag,
+                 String assetType,
+                 String model,
+                 LocalDate purchaseDate,
+                 String status,
+                 String currentHolder) {
         this.assetTag = assetTag;
         this.assetType = assetType;
         this.model = model;
@@ -63,7 +67,6 @@ public class Asset{
         this.status = status;
         this.currentHolder = currentHolder;
     }
-
 
     public Long getId() {
         return id;
