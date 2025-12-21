@@ -5,15 +5,20 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
 @Table(
-    name = "users",
-    uniqueConstraints = {
-        @UniqueConstraint(columnNames = "email")
-    }
+        name = "users",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "email")
+        }
 )
 public class User {
 
@@ -21,7 +26,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "full_name", nullable = false)
     private String fullName;
 
     @Column(nullable = false, unique = true)
@@ -30,26 +34,52 @@ public class User {
     @Column(nullable = false)
     private String department;
 
-    @Column(nullable = false)
     private String role;
-
 
     @Column(nullable = false)
     private String password;
 
-    public User() {}
+    private LocalDateTime createdAt;
 
-    public User(String fullName, String email, String department,
-                String role, String password) {
+    @OneToMany(mappedBy = "currentHolder")
+    private List<Asset> assets;
+
+    // ---------- Constructors ----------
+
+    public User() {
+    }
+
+    public User(Long id, String fullName, String email, String department,
+                String role, String password, LocalDateTime createdAt) {
+        this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.department = department;
         this.role = role;
         this.password = password;
+        this.createdAt = createdAt;
     }
+
+    // ---------- PrePersist ----------
+
+    @PrePersist
+    public void prePersist() {
+        if (this.role == null) {
+            this.role = "USER";
+        }
+        if (this.createdAt == null) {
+            this.createdAt = LocalDateTime.now();
+        }
+    }
+
+    // ---------- Getters and Setters ----------
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFullName() {
@@ -86,5 +116,17 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
