@@ -1,0 +1,42 @@
+package com.example.demo.controller;
+
+import com.example.demo.entity.DisposalRecord;
+import com.example.demo.entity.User;
+import com.example.demo.service.DisposalRecordService;
+
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/disposals")
+public class DisposalRecordController {
+
+    private final DisposalRecordService disposalRecordService;
+
+    public DisposalRecordController(DisposalRecordService disposalRecordService) {
+        this.disposalRecordService = disposalRecordService;
+    }
+
+    @PostMapping("/{assetId}")
+    public DisposalRecord createDisposal(@PathVariable Long assetId,
+                                         @RequestParam Long approvedByUserId,
+                                         @RequestBody DisposalRecord disposal) {
+
+        User approver = new User();
+        approver.setId(approvedByUserId);
+        disposal.setApprovedBy(approver);
+
+        return disposalRecordService.createDisposal(assetId, disposal);
+    }
+
+    @GetMapping
+    public List<DisposalRecord> getAllDisposals() {
+        return disposalRecordService.getAllDisposals();
+    }
+
+    @GetMapping("/{id}")
+    public DisposalRecord getDisposal(@PathVariable Long id) {
+        return disposalRecordService.getDisposal(id);
+    }
+}
