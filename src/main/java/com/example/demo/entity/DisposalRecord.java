@@ -1,10 +1,12 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 import java.time.LocalDate;
@@ -18,38 +20,28 @@ public class DisposalRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String asset;
+    @OneToOne(optional = false)
+    private Asset asset;
 
-    @Column(name = "disposal_method", nullable = false)
     private String disposalMethod;
 
-    @Column(name = "disposal_date", nullable = false)
     private LocalDate disposalDate;
 
-    @Column(name = "approved_by", nullable = false)
-    private String approvedBy;
+    @ManyToOne(optional = false)
+    private User approvedBy;
 
-    @Column
     private String notes;
 
-    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    // No-arg constructor (required by JPA)
+    // ---------- Constructors ----------
+
     public DisposalRecord() {
     }
 
-    // Parameterized constructor
-    public DisposalRecord(
-            Long id,
-            String asset,
-            String disposalMethod,
-            LocalDate disposalDate,
-            String approvedBy,
-            String notes,
-            LocalDateTime createdAt
-    ) {
+    public DisposalRecord(Long id, Asset asset, String disposalMethod,
+                          LocalDate disposalDate, User approvedBy,
+                          String notes, LocalDateTime createdAt) {
         this.id = id;
         this.asset = asset;
         this.disposalMethod = disposalMethod;
@@ -59,7 +51,16 @@ public class DisposalRecord {
         this.createdAt = createdAt;
     }
 
-    // Getters and Setters
+    // ---------- PrePersist ----------
+
+    @PrePersist
+    public void prePersist() {
+        if (this.createdAt == null) {
+            this.createdAt = LocalDateTime.now();
+        }
+    }
+
+    // ---------- Getters and Setters ----------
 
     public Long getId() {
         return id;
@@ -69,11 +70,11 @@ public class DisposalRecord {
         this.id = id;
     }
 
-    public String getAsset() {
+    public Asset getAsset() {
         return asset;
     }
 
-    public void setAsset(String asset) {
+    public void setAsset(Asset asset) {
         this.asset = asset;
     }
 
@@ -93,11 +94,11 @@ public class DisposalRecord {
         this.disposalDate = disposalDate;
     }
 
-    public String getApprovedBy() {
+    public User getApprovedBy() {
         return approvedBy;
     }
 
-    public void setApprovedBy(String approvedBy) {
+    public void setApprovedBy(User approvedBy) {
         this.approvedBy = approvedBy;
     }
 
