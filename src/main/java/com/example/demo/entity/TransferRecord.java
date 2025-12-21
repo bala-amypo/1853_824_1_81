@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 import java.time.LocalDate;
@@ -17,31 +18,28 @@ public class TransferRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String asset;
+    @ManyToOne(optional = false)
+    private Asset asset;
 
-    @Column(name = "from_department", nullable = false)
+    @Column(nullable = false)
     private String fromDepartment;
 
-    @Column(name = "to_department", nullable = false)
+    @Column(nullable = false)
     private String toDepartment;
 
-    @Column(name = "transfer_date", nullable = false)
     private LocalDate transferDate;
 
-    @Column(name = "approved_by", nullable = false)
-    private String approvedBy;
+    @ManyToOne(optional = false)
+    private User approvedBy;
+
+    // ---------- Constructors ----------
+
     public TransferRecord() {
     }
 
-    public TransferRecord(
-            Long id,
-            String asset,
-            String fromDepartment,
-            String toDepartment,
-            LocalDate transferDate,
-            String approvedBy
-    ) {
+    public TransferRecord(Long id, Asset asset, String fromDepartment,
+                          String toDepartment, LocalDate transferDate,
+                          User approvedBy) {
         this.id = id;
         this.asset = asset;
         this.fromDepartment = fromDepartment;
@@ -50,6 +48,7 @@ public class TransferRecord {
         this.approvedBy = approvedBy;
     }
 
+    // ---------- Getters and Setters ----------
 
     public Long getId() {
         return id;
@@ -59,11 +58,11 @@ public class TransferRecord {
         this.id = id;
     }
 
-    public String getAsset() {
+    public Asset getAsset() {
         return asset;
     }
 
-    public void setAsset(String asset) {
+    public void setAsset(Asset asset) {
         this.asset = asset;
     }
 
@@ -91,11 +90,11 @@ public class TransferRecord {
         this.transferDate = transferDate;
     }
 
-    public String getApprovedBy() {
+    public User getApprovedBy() {
         return approvedBy;
     }
 
-    public void setApprovedBy(String approvedBy) {
+    public void setApprovedBy(User approvedBy) {
         this.approvedBy = approvedBy;
     }
 }
