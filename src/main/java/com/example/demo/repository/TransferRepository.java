@@ -1,10 +1,8 @@
 package com.example.demo.repository;
 
-import com.example.demo.entity.LifecycleEvent;
+import com.example.demo.entity.TransferRecord;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface LifecycleEventRepository extends JpaRepository<LifecycleEvent, Long> {
- 
-
+public interface TransferRepository
+        extends JpaRepository<TransferRecord, Long> {
 }
-

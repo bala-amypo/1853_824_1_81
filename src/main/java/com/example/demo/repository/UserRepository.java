@@ -3,8 +3,6 @@ package com.example.demo.repository;
 import com.example.demo.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface LifecycleEventRepository extends JpaRepository<LifecycleEvent, Long> {
- 
-
+public interface UserRepository
+        extends JpaRepository<User, Long> {
 }
-
