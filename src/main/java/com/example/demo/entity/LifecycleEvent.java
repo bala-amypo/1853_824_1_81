@@ -62,6 +62,14 @@ public class LifecycleEvent {
         return eventDate;
     }
 
+    public String getEventType() {
+        return eventType;
+    }
+
+    public String getEventDescription() {
+        return eventDescription;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
