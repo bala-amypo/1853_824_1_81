@@ -3,10 +3,13 @@ package com.example.demo.security;
 import com.example.demo.entity.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+@Component   // ✅ THIS LINE FIXES THE ERROR
 public class JwtUtil {
 
     private final String SECRET = "secret123";
@@ -19,7 +22,6 @@ public class JwtUtil {
                 .compact();
     }
 
-    // ✅ REQUIRED BY TESTS
     public String generateTokenForUser(User user) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("email", user.getEmail());
