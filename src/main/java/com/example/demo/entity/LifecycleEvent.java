@@ -28,8 +28,11 @@ public class LifecycleEvent {
     public LifecycleEvent() {
     }
 
-    public LifecycleEvent(Long id, Asset asset, String eventType,
-                          String eventDescription, LocalDateTime eventDate,
+    public LifecycleEvent(Long id,
+                          Asset asset,
+                          String eventType,
+                          String eventDescription,
+                          LocalDateTime eventDate,
                           User performedBy) {
         this.id = id;
         this.asset = asset;
@@ -46,6 +49,8 @@ public class LifecycleEvent {
         }
     }
 
+    /* ===== GETTERS & SETTERS ===== */
+
     public Long getId() {
         return id;
     }
@@ -54,31 +59,31 @@ public class LifecycleEvent {
         return asset;
     }
 
-    public User getPerformedBy() {
-        return performedBy;
-    }
-
     public void setAsset(Asset asset) {
         this.asset = asset;
     }
 
-    public void setPerformedBy(User performedBy) {
-        this.performedBy = performedBy;
+    public String getEventType() {
+        return eventType;
     }
 
     public void setEventType(String eventType) {
         this.eventType = eventType;
     }
 
+    public String getEventDescription() {
+        return eventDescription;
+    }
+
     public void setEventDescription(String eventDescription) {
         this.eventDescription = eventDescription;
-        public String getEventType() {
-    return eventType;
-}
+    }
 
-public String getEventDescription() {
-    return eventDescription;
-}
+    public User getPerformedBy() {
+        return performedBy;
+    }
 
+    public void setPerformedBy(User performedBy) {
+        this.performedBy = performedBy;
     }
 }
