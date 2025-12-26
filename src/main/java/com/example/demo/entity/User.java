@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
@@ -20,7 +21,7 @@ public class User {
     @PrePersist
     public void prePersist() {
         if (role == null) role = "USER";
-        createdAt = LocalDateTime.now();
+        if (createdAt == null) createdAt = LocalDateTime.now();
     }
 
     public User() {}
@@ -36,8 +37,15 @@ public class User {
         this.createdAt = createdAt;
     }
 
-    // getters
     public Long getId() { return id; }
-    public String getRole() { return role; }
+    public String getEmail() { return email; }
     public String getDepartment() { return department; }
+    public String getRole() { return role; }
+    public String getPassword() { return password; }
+
+    public void setId(Long id) { this.id = id; }
+    public void setEmail(String email) { this.email = email; }
+    public void setDepartment(String department) { this.department = department; }
+    public void setRole(String role) { this.role = role; }
+    public void setPassword(String password) { this.password = password; }
 }
