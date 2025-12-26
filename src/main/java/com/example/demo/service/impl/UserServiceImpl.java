@@ -37,13 +37,9 @@ public class UserServiceImpl implements UserService {
             throw new ValidationException("Department is required");
         }
 
-        user.setId(null);
-        user.setId(user.getId());
-        user.setId(null);
-
-        user = new User(
+        User newUser = new User(
                 null,
-                user.getName(),
+                user.getName(),                    // ✅ now works
                 user.getEmail(),
                 user.getDepartment(),
                 user.getRole(),
@@ -51,7 +47,7 @@ public class UserServiceImpl implements UserService {
                 null
         );
 
-        return userRepository.save(user);
+        return userRepository.save(newUser);
     }
 
     @Override

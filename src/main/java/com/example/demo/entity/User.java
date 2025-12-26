@@ -53,12 +53,14 @@ public class User {
         }
     }
 
+    /* ===== GETTERS ===== */
+
     public Long getId() {
         return id;
     }
 
-    public String getRole() {
-        return role;
+    public String getName() {   // ✅ FIX ADDED
+        return name;
     }
 
     public String getEmail() {
@@ -69,11 +71,41 @@ public class User {
         return department;
     }
 
+    public String getRole() {
+        return role;
+    }
+
     public String getPassword() {
         return password;
     }
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    /* ===== SETTERS ===== */
+
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setName(String name) {   // ✅ FIX ADDED
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
