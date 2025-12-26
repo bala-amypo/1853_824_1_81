@@ -18,16 +18,17 @@ public class LifecycleEvent {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "asset_id", nullable = false)
+    @JoinColumn(name = "asset_id")
     private Asset asset;
 
     private String eventType;
+
     private String eventDescription;
 
     private LocalDateTime eventDate;
 
     @ManyToOne
-    @JoinColumn(name = "performed_by", nullable = false)
+    @JoinColumn(name = "performed_by")
     private User performedBy;
 
     public LifecycleEvent() {
@@ -46,10 +47,12 @@ public class LifecycleEvent {
 
     @PrePersist
     public void prePersist() {
-        if (this.eventDate == null) {
-            this.eventDate = LocalDateTime.now();
+        if (eventDate == null) {
+            eventDate = LocalDateTime.now();
         }
     }
+
+    /* ===== GETTERS ===== */
 
     public Long getId() {
         return id;
@@ -59,20 +62,30 @@ public class LifecycleEvent {
         return asset;
     }
 
-    public User getPerformedBy() {
-        return performedBy;
-    }
-
     public String getEventType() {
         return eventType;
     }
 
-    public void setAsset(Asset asset) {
-        this.asset = asset;
+    public String getEventDescription() {
+        return eventDescription;
     }
 
-    public void setPerformedBy(User performedBy) {
-        this.performedBy = performedBy;
+    public LocalDateTime getEventDate() {
+        return eventDate;
+    }
+
+    public User getPerformedBy() {
+        return performedBy;
+    }
+
+    /* ===== SETTERS (TESTS REQUIRE THESE) ===== */
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setAsset(Asset asset) {
+        this.asset = asset;
     }
 
     public void setEventType(String eventType) {
@@ -81,5 +94,9 @@ public class LifecycleEvent {
 
     public void setEventDescription(String eventDescription) {
         this.eventDescription = eventDescription;
+    }
+
+    public void setPerformedBy(User performedBy) {
+        this.performedBy = performedBy;
     }
 }

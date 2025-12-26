@@ -3,6 +3,7 @@ package com.example.demo.security;
 import com.example.demo.entity.User;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -31,23 +32,23 @@ public class JwtUtil {
         return generateToken(claims, user.getEmail());
     }
 
-    public Claims parseToken(String token) {
+    /* ===== TESTS EXPECT THIS EXACT RETURN TYPE ===== */
+    public Jws<Claims> parseToken(String token) {
         return Jwts.parser()
                 .setSigningKey(SECRET)
-                .parseClaimsJws(token)
-                .getBody();
+                .parseClaimsJws(token);
     }
 
     public String extractUsername(String token) {
-        return parseToken(token).getSubject();
+        return parseToken(token).getBody().getSubject();
     }
 
     public String extractRole(String token) {
-        return (String) parseToken(token).get("role");
+        return (String) parseToken(token).getBody().get("role");
     }
 
     public Long extractUserId(String token) {
-        Object id = parseToken(token).get("userId");
+        Object id = parseToken(token).getBody().get("userId");
         return id == null ? null : Long.valueOf(id.toString());
     }
 

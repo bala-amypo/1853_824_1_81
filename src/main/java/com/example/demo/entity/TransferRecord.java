@@ -17,15 +17,17 @@ public class TransferRecord {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "asset_id", nullable = false)
+    @JoinColumn(name = "asset_id")
     private Asset asset;
 
     private String fromDepartment;
+
     private String toDepartment;
+
     private LocalDate transferDate;
 
     @ManyToOne
-    @JoinColumn(name = "approved_by", nullable = false)
+    @JoinColumn(name = "approved_by")
     private User approvedBy;
 
     public TransferRecord() {
@@ -42,16 +44,14 @@ public class TransferRecord {
         this.approvedBy = approvedBy;
     }
 
+    /* ===== GETTERS ===== */
+
     public Long getId() {
         return id;
     }
 
     public Asset getAsset() {
         return asset;
-    }
-
-    public User getApprovedBy() {
-        return approvedBy;
     }
 
     public String getFromDepartment() {
@@ -66,12 +66,18 @@ public class TransferRecord {
         return transferDate;
     }
 
-    public void setAsset(Asset asset) {
-        this.asset = asset;
+    public User getApprovedBy() {
+        return approvedBy;
     }
 
-    public void setApprovedBy(User approvedBy) {
-        this.approvedBy = approvedBy;
+    /* ===== SETTERS (TESTS REQUIRE THESE) ===== */
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setAsset(Asset asset) {
+        this.asset = asset;
     }
 
     public void setFromDepartment(String fromDepartment) {
@@ -84,5 +90,9 @@ public class TransferRecord {
 
     public void setTransferDate(LocalDate transferDate) {
         this.transferDate = transferDate;
+    }
+
+    public void setApprovedBy(User approvedBy) {
+        this.approvedBy = approvedBy;
     }
 }

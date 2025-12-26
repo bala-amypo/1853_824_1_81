@@ -22,30 +22,26 @@ public class Asset {
     @Column(nullable = false, unique = true)
     private String assetTag;
 
-    @Column(nullable = false)
     private String assetType;
 
-    @Column(nullable = false)
     private String model;
 
     private LocalDate purchaseDate;
 
-    @Column(nullable = false)
     private String status;
 
     @ManyToOne
     @JoinColumn(name = "current_holder_id")
     private User currentHolder;
 
-    @Column(nullable = false)
     private LocalDateTime createdAt;
 
     public Asset() {
     }
 
     public Asset(Long id, String assetTag, String assetType, String model,
-                 LocalDate purchaseDate, String status, User currentHolder,
-                 LocalDateTime createdAt) {
+                 LocalDate purchaseDate, String status,
+                 User currentHolder, LocalDateTime createdAt) {
         this.id = id;
         this.assetTag = assetTag;
         this.assetType = assetType;
@@ -58,13 +54,15 @@ public class Asset {
 
     @PrePersist
     public void prePersist() {
-        if (this.status == null) {
-            this.status = "AVAILABLE";
+        if (status == null) {
+            status = "AVAILABLE";
         }
-        if (this.createdAt == null) {
-            this.createdAt = LocalDateTime.now();
+        if (createdAt == null) {
+            createdAt = LocalDateTime.now();
         }
     }
+
+    /* ===== GETTERS ===== */
 
     public Long getId() {
         return id;
@@ -98,8 +96,14 @@ public class Asset {
         return createdAt;
     }
 
+    /* ===== SETTERS (TESTS REQUIRE THESE) ===== */
+
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setAssetTag(String assetTag) {
+        this.assetTag = assetTag;
     }
 
     public void setStatus(String status) {

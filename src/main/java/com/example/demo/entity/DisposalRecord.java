@@ -19,14 +19,15 @@ public class DisposalRecord {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "asset_id", nullable = false)
+    @JoinColumn(name = "asset_id")
     private Asset asset;
 
     private String disposalMethod;
+
     private LocalDate disposalDate;
 
     @ManyToOne
-    @JoinColumn(name = "approved_by", nullable = false)
+    @JoinColumn(name = "approved_by")
     private User approvedBy;
 
     private String notes;
@@ -50,29 +51,49 @@ public class DisposalRecord {
 
     @PrePersist
     public void prePersist() {
-        if (this.createdAt == null) {
-            this.createdAt = LocalDateTime.now();
+        if (createdAt == null) {
+            createdAt = LocalDateTime.now();
         }
     }
 
+    /* ===== GETTERS ===== */
+
     public Long getId() {
         return id;
+    }
+
+    public Asset getAsset() {
+        return asset;
+    }
+
+    public String getDisposalMethod() {
+        return disposalMethod;
+    }
+
+    public LocalDate getDisposalDate() {
+        return disposalDate;
     }
 
     public User getApprovedBy() {
         return approvedBy;
     }
 
+    public String getNotes() {
+        return notes;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setAsset(Asset asset) {
-        this.asset = asset;
+    /* ===== SETTERS (TESTS REQUIRE THESE) ===== */
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setApprovedBy(User approvedBy) {
-        this.approvedBy = approvedBy;
+    public void setAsset(Asset asset) {
+        this.asset = asset;
     }
 
     public void setDisposalMethod(String disposalMethod) {
@@ -83,7 +104,7 @@ public class DisposalRecord {
         this.disposalDate = disposalDate;
     }
 
-    public void setNotes(String notes) {
-        this.notes = notes;
+    public void setApprovedBy(User approvedBy) {
+        this.approvedBy = approvedBy;
     }
 }
