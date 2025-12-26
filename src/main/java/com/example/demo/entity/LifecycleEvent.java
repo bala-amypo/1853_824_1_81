@@ -25,12 +25,19 @@ public class LifecycleEvent {
     @ManyToOne
     private User performedBy;
 
+    @PrePersist
+    public void prePersist() {
+        if (eventDate == null) {
+            eventDate = LocalDateTime.now();
+        }
+    }
+
     public LifecycleEvent() {
     }
 
     public LifecycleEvent(Long id, Asset asset, String eventType,
-                          String eventDescription,
-                          LocalDateTime eventDate, User performedBy) {
+                          String eventDescription, LocalDateTime eventDate,
+                          User performedBy) {
         this.id = id;
         this.asset = asset;
         this.eventType = eventType;
@@ -39,46 +46,9 @@ public class LifecycleEvent {
         this.performedBy = performedBy;
     }
 
-    @PrePersist
-    public void prePersist() {
-        if (this.eventDate == null) {
-            this.eventDate = LocalDateTime.now();
-        }
-    }
+    public Long getId() { return id; }
+    public Asset getAsset() { return asset; }
+    public User getPerformedBy() { return performedBy; }
 
-    public Long getId() {
-        return id;
-    }
-
-    public Asset getAsset() {
-        return asset;
-    }
-
-    public User getPerformedBy() {
-        return performedBy;
-    }
-
-    public LocalDateTime getEventDate() {
-        return eventDate;
-    }
-
-    public String getEventType() {
-        return eventType;
-    }
-
-    public String getEventDescription() {
-        return eventDescription;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setEventType(String eventType) {
-        this.eventType = eventType;
-    }
-
-    public void setEventDescription(String eventDescription) {
-        this.eventDescription = eventDescription;
-    }
+    public void setId(Long id) { this.id = id; }
 }

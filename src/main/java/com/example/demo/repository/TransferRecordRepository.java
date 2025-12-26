@@ -5,6 +5,5 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TransferRecordRepository extends JpaRepository<TransferRecord, Long> {
-
     List<TransferRecord> findByAsset_Id(Long assetId);
 }
