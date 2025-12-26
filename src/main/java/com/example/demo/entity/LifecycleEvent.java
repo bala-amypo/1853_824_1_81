@@ -22,7 +22,7 @@ public class LifecycleEvent {
 
     @PrePersist
     public void prePersist() {
-        if (eventDate == null) eventDate = LocalDateTime.now();
+        eventDate = LocalDateTime.now();
     }
 
     public LifecycleEvent() {}
@@ -38,5 +38,10 @@ public class LifecycleEvent {
         this.performedBy = performedBy;
     }
 
-    /* getters & setters */
+    public Long getId() { return id; }
+    public Asset getAsset() { return asset; }
+    public User getPerformedBy() { return performedBy; }
+    public void setId(Long id) { this.id = id; }
+    public void setEventType(String e) { this.eventType = e; }
+    public void setEventDescription(String e) { this.eventDescription = e; }
 }

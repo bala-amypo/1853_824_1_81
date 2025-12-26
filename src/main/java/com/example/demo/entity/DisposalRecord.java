@@ -25,7 +25,7 @@ public class DisposalRecord {
 
     @PrePersist
     public void prePersist() {
-        if (createdAt == null) createdAt = LocalDateTime.now();
+        createdAt = LocalDateTime.now();
     }
 
     public DisposalRecord() {}
@@ -42,5 +42,10 @@ public class DisposalRecord {
         this.createdAt = createdAt;
     }
 
-    /* getters & setters */
+    public Long getId() { return id; }
+    public User getApprovedBy() { return approvedBy; }
+    public void setId(Long id) { this.id = id; }
+    public void setDisposalMethod(String m) { this.disposalMethod = m; }
+    public void setDisposalDate(LocalDate d) { this.disposalDate = d; }
+    public void setApprovedBy(User u) { this.approvedBy = u; }
 }

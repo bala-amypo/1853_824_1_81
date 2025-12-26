@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users")
 public class User {
 
     @Id
@@ -21,7 +20,7 @@ public class User {
     @PrePersist
     public void prePersist() {
         if (role == null) role = "USER";
-        if (createdAt == null) createdAt = LocalDateTime.now();
+        createdAt = LocalDateTime.now();
     }
 
     public User() {}
@@ -37,6 +36,8 @@ public class User {
         this.createdAt = createdAt;
     }
 
-    /* getters & setters */
-    // (include all getters and setters)
+    // getters
+    public Long getId() { return id; }
+    public String getRole() { return role; }
+    public String getDepartment() { return department; }
 }
