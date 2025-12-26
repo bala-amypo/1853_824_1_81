@@ -24,8 +24,7 @@ public class TransferRecord {
     @ManyToOne
     private User approvedBy;
 
-    public TransferRecord() {
-    }
+    public TransferRecord() {}
 
     public TransferRecord(Long id, Asset asset, String fromDepartment,
                           String toDepartment, LocalDate transferDate,
@@ -38,10 +37,15 @@ public class TransferRecord {
         this.approvedBy = approvedBy;
     }
 
+    // ✅ REQUIRED GETTERS
     public Long getId() { return id; }
     public Asset getAsset() { return asset; }
+    public String getFromDepartment() { return fromDepartment; }
+    public String getToDepartment() { return toDepartment; }
+    public LocalDate getTransferDate() { return transferDate; }
     public User getApprovedBy() { return approvedBy; }
 
+    // setters
     public void setId(Long id) { this.id = id; }
     public void setFromDepartment(String fromDepartment) { this.fromDepartment = fromDepartment; }
     public void setToDepartment(String toDepartment) { this.toDepartment = toDepartment; }
