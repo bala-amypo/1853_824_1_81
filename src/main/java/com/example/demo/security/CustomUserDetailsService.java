@@ -3,8 +3,11 @@ package com.example.demo.security;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
 import org.springframework.security.core.userdetails.*;
+import org.springframework.stereotype.Service;
+
 import java.util.Collections;
 
+@Service
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository repo;
@@ -13,6 +16,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         this.repo = repo;
     }
 
+    @Override
     public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
 
@@ -22,6 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(),
                 user.getPassword(),
-                Collections.emptyList());
+                Collections.emptyList()
+        );
     }
 }
