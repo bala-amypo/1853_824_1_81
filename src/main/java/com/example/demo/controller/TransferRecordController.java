@@ -2,39 +2,28 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.TransferRecord;
 import com.example.demo.service.TransferRecordService;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/transfers")
-public class TransferRecordController {
+public class TransferController {
 
-    private final TransferRecordService transferRecordService;
+    private final TransferRecordService service;
 
-    public TransferRecordController(TransferRecordService transferRecordService) {
-        this.transferRecordService = transferRecordService;
+    public TransferController(TransferRecordService service) {
+        this.service = service;
     }
 
-    @PostMapping("/asset/{assetId}")
-    public ResponseEntity<TransferRecord> createTransfer(@PathVariable Long assetId,
-                                                         @RequestBody TransferRecord record) {
-        return ResponseEntity.ok(
-                transferRecordService.createTransfer(assetId, record)
-        );
+    @PostMapping("/{assetId}")
+    public TransferRecord create(
+            @PathVariable Long assetId,
+            @RequestBody TransferRecord record) {
+        return service.createTransfer(assetId, record);
     }
 
     @GetMapping("/asset/{assetId}")
-    public ResponseEntity<List<TransferRecord>> getTransfers(@PathVariable Long assetId) {
-        return ResponseEntity.ok(
-                transferRecordService.getTransfersForAsset(assetId)
-        );
+    public List<TransferRecord> history(@PathVariable Long assetId) {
+        return service.getTransfersForAsset(assetId);
     }
 }

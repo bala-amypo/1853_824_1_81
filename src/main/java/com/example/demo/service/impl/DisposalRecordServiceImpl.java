@@ -6,40 +6,34 @@ import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.AssetRepository;
 import com.example.demo.repository.DisposalRecordRepository;
 import com.example.demo.service.DisposalRecordService;
-
 import org.springframework.stereotype.Service;
 
 @Service
 public class DisposalRecordServiceImpl implements DisposalRecordService {
 
-    private final DisposalRecordRepository disposalRecordRepository;
-    private final AssetRepository assetRepository;
+    private final DisposalRecordRepository repo;
+    private final AssetRepository assetRepo;
 
-    public DisposalRecordServiceImpl(DisposalRecordRepository disposalRecordRepository,
-                                     AssetRepository assetRepository) {
-        this.disposalRecordRepository = disposalRecordRepository;
-        this.assetRepository = assetRepository;
+    public DisposalRecordServiceImpl(
+            DisposalRecordRepository repo,
+            AssetRepository assetRepo) {
+        this.repo = repo;
+        this.assetRepo = assetRepo;
     }
 
-    @Override
-    public DisposalRecord createDisposal(Long assetId,
-                                         DisposalRecord record) {
-
-        Asset asset = assetRepository.findById(assetId)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("Asset not found"));
+    public DisposalRecord createDisposal(Long assetId, DisposalRecord record) {
+        Asset asset = assetRepo.findById(assetId)
+                .orElseThrow(() -> new ResourceNotFoundException("Asset not found"));
 
         asset.setStatus("DISPOSED");
-        record.setAsset(asset);
+        assetRepo.save(asset);
 
-        return disposalRecordRepository.save(record);
+        record.setAsset(asset);
+        return repo.save(record);
     }
 
-    @Override
     public DisposalRecord getDisposal(Long id) {
-        return disposalRecordRepository.findById(id)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException(
-                                "Disposal record not found"));
+        return repo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Disposal record not found"));
     }
 }
