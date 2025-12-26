@@ -3,10 +3,12 @@ package com.example.demo.controller;
 import com.example.demo.dto.RegisterRequest;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
-
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/users")
@@ -19,10 +21,10 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public User registerUser(@RequestBody RegisterRequest request) {
+    public User register(@RequestBody RegisterRequest request) {
 
         User user = new User();
-      user.setName(request.getFullName());
+        user.setName(request.getFullName());   // ✅ FIXED
         user.setEmail(request.getEmail());
         user.setDepartment(request.getDepartment());
         user.setPassword(request.getPassword());
@@ -30,13 +32,8 @@ public class UserController {
         return userService.registerUser(user);
     }
 
-    @GetMapping
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
-    }
-
     @GetMapping("/{id}")
     public User getUser(@PathVariable Long id) {
-        return userService.getUser(id);
+        return userService.getUser(id);       // ✅ FIXED
     }
 }

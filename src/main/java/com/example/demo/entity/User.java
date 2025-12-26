@@ -37,30 +37,37 @@ public class User {
 
     @PrePersist
     public void prePersist() {
-        if (role == null) {
-            role = "USER";
+        if (this.role == null) {
+            this.role = "USER";
         }
-        if (createdAt == null) {
-            createdAt = LocalDateTime.now();
+        if (this.createdAt == null) {
+            this.createdAt = LocalDateTime.now();
         }
     }
-    
 
-    /* ===== REQUIRED GETTERS / SETTERS ===== */
+    /* ===== GETTERS & SETTERS ===== */
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {          // ✅ REQUIRED
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {     // ✅ FIX
+        this.name = name;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {  // ✅ REQUIRED
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -68,7 +75,7 @@ public class User {
         return department;
     }
 
-    public void setDepartment(String department) { // ✅ REQUIRED
+    public void setDepartment(String department) {
         this.department = department;
     }
 
@@ -76,11 +83,15 @@ public class User {
         return role;
     }
 
-    public String getPassword() {          // ✅ REQUIRED
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) { // ✅ REQUIRED
+    public void setPassword(String password) {
         this.password = password;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 }
