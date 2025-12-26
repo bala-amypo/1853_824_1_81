@@ -22,7 +22,7 @@ public class UserController {
     public User registerUser(@RequestBody RegisterRequest request) {
 
         User user = new User();
-        user.setFullName(request.getFullName());
+      user.setName(request.getFullName());
         user.setEmail(request.getEmail());
         user.setDepartment(request.getDepartment());
         user.setPassword(request.getPassword());
