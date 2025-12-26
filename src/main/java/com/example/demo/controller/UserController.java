@@ -24,7 +24,7 @@ public class UserController {
     public User register(@RequestBody RegisterRequest request) {
 
         User user = new User();
-        user.setName(request.getFullName());   // ✅ FIXED
+        user.setName(request.getFullName());  
         user.setEmail(request.getEmail());
         user.setDepartment(request.getDepartment());
         user.setPassword(request.getPassword());
@@ -34,6 +34,6 @@ public class UserController {
 
     @GetMapping("/{id}")
     public User getUser(@PathVariable Long id) {
-        return userService.getUser(id);       // ✅ FIXED
+        return userService.getUser(id);     
     }
 }
