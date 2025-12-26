@@ -1,24 +1,25 @@
 package com.example.demo.security;
 
 import com.example.demo.entity.User;
+
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class JwtUtil {
 
-    private static final String SECRET_KEY = "secret-key";
+    private static final String SECRET = "secretkey123";
 
     public String generateToken(Map<String, Object> claims, String subject) {
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject)
                 .setIssuedAt(new Date())
-                .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
+                .signWith(SignatureAlgorithm.HS256, SECRET)
                 .compact();
     }
 
@@ -31,8 +32,10 @@ public class JwtUtil {
     }
 
     public Claims parseToken(String token) {
-        JwtParser parser = Jwts.parser().setSigningKey(SECRET_KEY);
-        return parser.parseClaimsJws(token).getBody();
+        return Jwts.parser()
+                .setSigningKey(SECRET)
+                .parseClaimsJws(token)
+                .getBody();
     }
 
     public String extractUsername(String token) {
@@ -45,10 +48,10 @@ public class JwtUtil {
 
     public Long extractUserId(String token) {
         Object id = parseToken(token).get("userId");
-        return Long.valueOf(id.toString());
+        return id == null ? null : Long.valueOf(id.toString());
     }
 
-    public boolean isTokenValid(String token, String email) {
-        return extractUsername(token).equals(email);
+    public boolean isTokenValid(String token, String username) {
+        return extractUsername(token).equals(username);
     }
 }

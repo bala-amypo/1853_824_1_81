@@ -8,8 +8,12 @@ import com.example.demo.repository.AssetRepository;
 import com.example.demo.repository.LifecycleEventRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.LifecycleEventService;
+
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class LifecycleEventServiceImpl implements LifecycleEventService {
 
     private final LifecycleEventRepository lifecycleEventRepository;
@@ -25,28 +29,22 @@ public class LifecycleEventServiceImpl implements LifecycleEventService {
     }
 
     @Override
-    public LifecycleEvent logEvent(Long assetId, Long userId, LifecycleEvent event) {
+    public LifecycleEvent logEvent(Long assetId,
+                                   Long userId,
+                                   LifecycleEvent event) {
 
         Asset asset = assetRepository.findById(assetId)
-                .orElseThrow(() -> new ResourceNotFoundException("Asset not found"));
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Asset not found"));
 
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("User not found"));
 
-        event.setId(null);
-        event.prePersist();
-        event = lifecycleEventRepository.save(
-                new LifecycleEvent(
-                        null,
-                        asset,
-                        event.getEventType(),
-                        event.getEventDescription(),
-                        event.getEventDate(),
-                        user
-                )
-        );
+        event.setAsset(asset);
+        event.setPerformedBy(user);
 
-        return event;
+        return lifecycleEventRepository.save(event);
     }
 
     @Override
