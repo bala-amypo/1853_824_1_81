@@ -1,43 +1,35 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "transfer_records")
 public class TransferRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Asset asset;
 
-    @Column(nullable = false)
     private String fromDepartment;
-
-    @Column(nullable = false)
     private String toDepartment;
-
     private LocalDate transferDate;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     private User approvedBy;
 
     public TransferRecord() {
     }
 
-    public TransferRecord(Long id, Asset asset, String fromDepartment,
-                          String toDepartment, LocalDate transferDate,
-                          User approvedBy) {
+    public TransferRecord(Long id, Asset asset,
+                          String fromDepartment, String toDepartment,
+                          LocalDate transferDate, User approvedBy) {
         this.id = id;
         this.asset = asset;
         this.fromDepartment = fromDepartment;
@@ -45,48 +37,45 @@ public class TransferRecord {
         this.transferDate = transferDate;
         this.approvedBy = approvedBy;
     }
+
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Asset getAsset() {
         return asset;
     }
 
-    public void setAsset(Asset asset) {
-        this.asset = asset;
+    public User getApprovedBy() {
+        return approvedBy;
     }
 
     public String getFromDepartment() {
         return fromDepartment;
     }
 
-    public void setFromDepartment(String fromDepartment) {
-        this.fromDepartment = fromDepartment;
-    }
-
     public String getToDepartment() {
         return toDepartment;
-    }
-
-    public void setToDepartment(String toDepartment) {
-        this.toDepartment = toDepartment;
     }
 
     public LocalDate getTransferDate() {
         return transferDate;
     }
 
-    public void setTransferDate(LocalDate transferDate) {
-        this.transferDate = transferDate;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public User getApprovedBy() {
-        return approvedBy;
+    public void setFromDepartment(String fromDepartment) {
+        this.fromDepartment = fromDepartment;
+    }
+
+    public void setToDepartment(String toDepartment) {
+        this.toDepartment = toDepartment;
+    }
+
+    public void setTransferDate(LocalDate transferDate) {
+        this.transferDate = transferDate;
     }
 
     public void setApprovedBy(User approvedBy) {
