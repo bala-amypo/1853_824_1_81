@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component   // ✅ THIS LINE FIXES THE ERROR
+@Component 
 public class JwtUtil {
 
     private final String SECRET = "secret123";
