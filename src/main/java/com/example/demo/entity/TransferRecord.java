@@ -36,9 +36,8 @@ public class TransferRecord {
     public Long getId() { return id; }
     public Asset getAsset() { return asset; }
     public User getApprovedBy() { return approvedBy; }
+
     public void setId(Long id) { this.id = id; }
-    public void setFromDepartment(String d) { this.fromDepartment = d; }
-    public void setToDepartment(String d) { this.toDepartment = d; }
-    public void setTransferDate(LocalDate d) { this.transferDate = d; }
-    public void setApprovedBy(User u) { this.approvedBy = u; }
+    public void setTransferDate(LocalDate transferDate) { this.transferDate = transferDate; }
+    public void setApprovedBy(User approvedBy) { this.approvedBy = approvedBy; }
 }
