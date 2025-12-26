@@ -33,14 +33,19 @@ public class TransferRecord {
         this.approvedBy = approvedBy;
     }
 
-    // ✅ REQUIRED GETTERS / SETTERS
+    // ✅ GETTERS
     public Long getId() { return id; }
     public Asset getAsset() { return asset; }
+    public String getFromDepartment() { return fromDepartment; }
+    public String getToDepartment() { return toDepartment; }
     public LocalDate getTransferDate() { return transferDate; }
     public User getApprovedBy() { return approvedBy; }
 
+    // ✅ SETTERS
     public void setId(Long id) { this.id = id; }
     public void setAsset(Asset asset) { this.asset = asset; }
+    public void setFromDepartment(String fromDepartment) { this.fromDepartment = fromDepartment; }
+    public void setToDepartment(String toDepartment) { this.toDepartment = toDepartment; }
     public void setTransferDate(LocalDate transferDate) { this.transferDate = transferDate; }
     public void setApprovedBy(User approvedBy) { this.approvedBy = approvedBy; }
 }

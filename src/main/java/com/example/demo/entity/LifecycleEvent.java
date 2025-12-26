@@ -38,11 +38,16 @@ public class LifecycleEvent {
         this.performedBy = performedBy;
     }
 
+    // ✅ GETTERS
     public Long getId() { return id; }
     public Asset getAsset() { return asset; }
     public User getPerformedBy() { return performedBy; }
+    public LocalDateTime getEventDate() { return eventDate; }
 
+    // ✅ SETTERS
     public void setId(Long id) { this.id = id; }
     public void setAsset(Asset asset) { this.asset = asset; }
     public void setPerformedBy(User performedBy) { this.performedBy = performedBy; }
+    public void setEventType(String eventType) { this.eventType = eventType; }
+    public void setEventDescription(String eventDescription) { this.eventDescription = eventDescription; }
 }
