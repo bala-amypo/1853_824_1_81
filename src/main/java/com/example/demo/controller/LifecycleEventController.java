@@ -3,7 +3,13 @@ package com.example.demo.controller;
 import com.example.demo.entity.LifecycleEvent;
 import com.example.demo.service.LifecycleEventService;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -17,20 +23,19 @@ public class LifecycleEventController {
         this.lifecycleEventService = lifecycleEventService;
     }
 
-    @PostMapping("/{assetId}/{userId}")
-    public LifecycleEvent logEvent(@PathVariable Long assetId,
-                                   @PathVariable Long userId,
-                                   @RequestBody LifecycleEvent event) {
-        return lifecycleEventService.logEvent(assetId, userId, event);
+    @PostMapping("/asset/{assetId}/user/{userId}")
+    public ResponseEntity<LifecycleEvent> logEvent(@PathVariable Long assetId,
+                                                   @PathVariable Long userId,
+                                                   @RequestBody LifecycleEvent event) {
+        return ResponseEntity.ok(
+                lifecycleEventService.logEvent(assetId, userId, event)
+        );
     }
 
     @GetMapping("/asset/{assetId}")
-    public List<LifecycleEvent> getEventsForAsset(@PathVariable Long assetId) {
-        return lifecycleEventService.getEventsForAsset(assetId);
-    }
-
-    @GetMapping("/{id}")
-    public LifecycleEvent getEvent(@PathVariable Long id) {
-        return lifecycleEventService.getEvent(id);
+    public ResponseEntity<List<LifecycleEvent>> getEventsForAsset(@PathVariable Long assetId) {
+        return ResponseEntity.ok(
+                lifecycleEventService.getEventsForAsset(assetId)
+        );
     }
 }

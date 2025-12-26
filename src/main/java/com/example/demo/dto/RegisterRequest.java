@@ -10,8 +10,7 @@ public class RegisterRequest {
     public RegisterRequest() {
     }
 
-    public RegisterRequest(String name, String email,
-                           String department, String password) {
+    public RegisterRequest(String name, String email, String department, String password) {
         this.name = name;
         this.email = email;
         this.department = department;

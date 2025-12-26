@@ -1,10 +1,15 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.TransferRecord;
-import com.example.demo.entity.User;
 import com.example.demo.service.TransferRecordService;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -18,25 +23,18 @@ public class TransferRecordController {
         this.transferRecordService = transferRecordService;
     }
 
-    @PostMapping("/{assetId}")
-    public TransferRecord createTransfer(@PathVariable Long assetId,
-                                         @RequestParam Long approvedByUserId,
-                                         @RequestBody TransferRecord record) {
-
-        User approver = new User();
-        approver.setId(approvedByUserId);
-        record.setApprovedBy(approver);
-
-        return transferRecordService.createTransfer(assetId, record);
+    @PostMapping("/asset/{assetId}")
+    public ResponseEntity<TransferRecord> createTransfer(@PathVariable Long assetId,
+                                                         @RequestBody TransferRecord record) {
+        return ResponseEntity.ok(
+                transferRecordService.createTransfer(assetId, record)
+        );
     }
 
     @GetMapping("/asset/{assetId}")
-    public List<TransferRecord> getTransfersForAsset(@PathVariable Long assetId) {
-        return transferRecordService.getTransfersForAsset(assetId);
-    }
-
-    @GetMapping("/{id}")
-    public TransferRecord getTransfer(@PathVariable Long id) {
-        return transferRecordService.getTransfer(id);
+    public ResponseEntity<List<TransferRecord>> getTransfers(@PathVariable Long assetId) {
+        return ResponseEntity.ok(
+                transferRecordService.getTransfersForAsset(assetId)
+        );
     }
 }
