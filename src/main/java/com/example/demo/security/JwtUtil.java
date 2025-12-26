@@ -2,7 +2,6 @@ package com.example.demo.security;
 
 import com.example.demo.entity.User;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -45,27 +44,27 @@ public class JwtUtil {
 
     // ================= TOKEN EXTRACTION =================
     public String extractUsername(String token) {
-        return parseToken(token).getPayload().getSubject();
+        return ((Claims) parseToken(token).getPayload()).getSubject();
     }
 
     public String extractRole(String token) {
-        return (String) parseToken(token).getPayload().get("role");
+        return (String) ((Claims) parseToken(token).getPayload()).get("role");
     }
 
     public Long extractUserId(String token) {
-        Object id = parseToken(token).getPayload().get("userId");
+        Object id = ((Claims) parseToken(token).getPayload()).get("userId");
         return id == null ? null : Long.valueOf(id.toString());
     }
 
     public boolean isTokenValid(String token, String username) {
         return extractUsername(token).equals(username)
-                && parseToken(token).getPayload()
+                && ((Claims) parseToken(token).getPayload())
                         .getExpiration()
                         .after(new Date());
     }
 
     // ================= REQUIRED BY TESTS =================
-    public Jwt<Header, Claims> parseToken(String token) {
+    public Jwt<?, ?> parseToken(String token) {
         return Jwts.parser()
                 .verifyWith(
                         Keys.hmacShaKeyFor(
