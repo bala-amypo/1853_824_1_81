@@ -2,7 +2,7 @@ package com.example.demo.dto;
 
 public class RegisterRequest {
 
-    private String fullName;
+    private String name;
     private String email;
     private String department;
     private String password;
@@ -10,16 +10,16 @@ public class RegisterRequest {
     public RegisterRequest() {
     }
 
-    public RegisterRequest(String fullName, String email,
+    public RegisterRequest(String name, String email,
                            String department, String password) {
-        this.fullName = fullName;
+        this.name = name;
         this.email = email;
         this.department = department;
         this.password = password;
     }
 
-    public String getFullName() {     // ✅ REQUIRED
-        return fullName;
+    public String getName() {
+        return name;
     }
 
     public String getEmail() {
@@ -30,7 +30,7 @@ public class RegisterRequest {
         return department;
     }
 
-    public String getPassword() {     // ✅ REQUIRED
+    public String getPassword() {
         return password;
     }
 }
