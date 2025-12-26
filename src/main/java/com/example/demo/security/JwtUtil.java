@@ -2,7 +2,7 @@ package com.example.demo.security;
 
 import com.example.demo.entity.User;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwt;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
@@ -44,32 +44,32 @@ public class JwtUtil {
 
     // ================= TOKEN EXTRACTION =================
     public String extractUsername(String token) {
-        return ((Claims) parseToken(token).getPayload()).getSubject();
+        return parseToken(token).getPayload().getSubject();
     }
 
     public String extractRole(String token) {
-        return (String) ((Claims) parseToken(token).getPayload()).get("role");
+        return (String) parseToken(token).getPayload().get("role");
     }
 
     public Long extractUserId(String token) {
-        Object id = ((Claims) parseToken(token).getPayload()).get("userId");
+        Object id = parseToken(token).getPayload().get("userId");
         return id == null ? null : Long.valueOf(id.toString());
     }
 
     public boolean isTokenValid(String token, String username) {
         return extractUsername(token).equals(username)
-                && ((Claims) parseToken(token).getPayload())
+                && parseToken(token).getPayload()
                         .getExpiration()
                         .after(new Date());
     }
 
     // ================= REQUIRED BY TESTS =================
-    public Jwt<?, ?> parseToken(String token) {
+    public Jws<Claims> parseToken(String token) {
         return Jwts.parser()
                 .verifyWith(
                         Keys.hmacShaKeyFor(
                                 SECRET.getBytes(StandardCharsets.UTF_8)))
                 .build()
-                .parse(token);
+                .parseSignedClaims(token);
     }
 }
