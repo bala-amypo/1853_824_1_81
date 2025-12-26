@@ -4,7 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+
 import java.time.LocalDate;
 
 @Entity
@@ -15,6 +17,7 @@ public class TransferRecord {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "asset_id", nullable = false)
     private Asset asset;
 
     private String fromDepartment;
@@ -22,9 +25,11 @@ public class TransferRecord {
     private LocalDate transferDate;
 
     @ManyToOne
+    @JoinColumn(name = "approved_by", nullable = false)
     private User approvedBy;
 
-    public TransferRecord() {}
+    public TransferRecord() {
+    }
 
     public TransferRecord(Long id, Asset asset, String fromDepartment,
                           String toDepartment, LocalDate transferDate,
@@ -37,18 +42,47 @@ public class TransferRecord {
         this.approvedBy = approvedBy;
     }
 
-    // ✅ REQUIRED GETTERS
-    public Long getId() { return id; }
-    public Asset getAsset() { return asset; }
-    public String getFromDepartment() { return fromDepartment; }
-    public String getToDepartment() { return toDepartment; }
-    public LocalDate getTransferDate() { return transferDate; }
-    public User getApprovedBy() { return approvedBy; }
+    public Long getId() {
+        return id;
+    }
 
-    // setters
-    public void setId(Long id) { this.id = id; }
-    public void setFromDepartment(String fromDepartment) { this.fromDepartment = fromDepartment; }
-    public void setToDepartment(String toDepartment) { this.toDepartment = toDepartment; }
-    public void setTransferDate(LocalDate transferDate) { this.transferDate = transferDate; }
-    public void setApprovedBy(User approvedBy) { this.approvedBy = approvedBy; }
+    public Asset getAsset() {
+        return asset;
+    }
+
+    public User getApprovedBy() {
+        return approvedBy;
+    }
+
+    public String getFromDepartment() {
+        return fromDepartment;
+    }
+
+    public String getToDepartment() {
+        return toDepartment;
+    }
+
+    public LocalDate getTransferDate() {
+        return transferDate;
+    }
+
+    public void setAsset(Asset asset) {
+        this.asset = asset;
+    }
+
+    public void setApprovedBy(User approvedBy) {
+        this.approvedBy = approvedBy;
+    }
+
+    public void setFromDepartment(String fromDepartment) {
+        this.fromDepartment = fromDepartment;
+    }
+
+    public void setToDepartment(String toDepartment) {
+        this.toDepartment = toDepartment;
+    }
+
+    public void setTransferDate(LocalDate transferDate) {
+        this.transferDate = transferDate;
+    }
 }
