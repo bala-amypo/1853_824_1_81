@@ -1,37 +1,38 @@
 package com.example.demo.security;
 
+import com.example.demo.entity.User;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 public class JwtUtil {
 
-    private final String SECRET = "secret-key";
+    private static final String SECRET_KEY = "secret-key";
 
     public String generateToken(Map<String, Object> claims, String subject) {
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject)
                 .setIssuedAt(new Date())
-                .signWith(SignatureAlgorithm.HS256, SECRET)
+                .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
                 .compact();
     }
 
-    public String generateTokenForUser(com.example.demo.entity.User user) {
-        return Jwts.builder()
-                .claim("email", user.getEmail())
-                .claim("role", user.getRole())
-                .claim("userId", user.getId())
-                .setSubject(user.getEmail())
-                .setIssuedAt(new Date())
-                .signWith(SignatureAlgorithm.HS256, SECRET)
-                .compact();
+    public String generateTokenForUser(User user) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("email", user.getEmail());
+        claims.put("role", user.getRole());
+        claims.put("userId", user.getId());
+        return generateToken(claims, user.getEmail());
     }
 
     public Claims parseToken(String token) {
-        return Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token).getBody();
+        JwtParser parser = Jwts.parser().setSigningKey(SECRET_KEY);
+        return parser.parseClaimsJws(token).getBody();
     }
 
     public String extractUsername(String token) {
@@ -43,10 +44,11 @@ public class JwtUtil {
     }
 
     public Long extractUserId(String token) {
-        return ((Number) parseToken(token).get("userId")).longValue();
+        Object id = parseToken(token).get("userId");
+        return Long.valueOf(id.toString());
     }
 
-    public boolean isTokenValid(String token, String username) {
-        return extractUsername(token).equals(username);
+    public boolean isTokenValid(String token, String email) {
+        return extractUsername(token).equals(email);
     }
 }
