@@ -50,10 +50,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(newUser);
     }
 
-    @Override
-    public User getByEmail(String email) {
-        return userRepository.findByEmail(email)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("User not found"));
-    }
+  @Override
+public User getByEmail(String email) {
+    return repo.findByEmail(email)
+            .orElseThrow(() -> new RuntimeException("User not found"));
 }
+
+    }
