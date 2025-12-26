@@ -49,7 +49,6 @@ public class DisposalRecord {
         this.createdAt = createdAt;
     }
 
-    // ✅ REQUIRED GETTERS
     public Long getId() { return id; }
     public Asset getAsset() { return asset; }
     public String getDisposalMethod() { return disposalMethod; }
