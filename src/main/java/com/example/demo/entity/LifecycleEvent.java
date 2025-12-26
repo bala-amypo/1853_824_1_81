@@ -1,10 +1,14 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "lifecycle_events")
 public class LifecycleEvent {
 
     @Id
@@ -21,20 +25,52 @@ public class LifecycleEvent {
     @ManyToOne
     private User performedBy;
 
-    public LifecycleEvent() {}
+    public LifecycleEvent() {
+    }
+
+    public LifecycleEvent(Long id, Asset asset, String eventType,
+                          String eventDescription, LocalDateTime eventDate,
+                          User performedBy) {
+        this.id = id;
+        this.asset = asset;
+        this.eventType = eventType;
+        this.eventDescription = eventDescription;
+        this.eventDate = eventDate;
+        this.performedBy = performedBy;
+    }
 
     @PrePersist
     public void prePersist() {
-        if (eventDate == null) eventDate = LocalDateTime.now();
+        if (eventDate == null) {
+            eventDate = LocalDateTime.now();
+        }
     }
 
-    // getters & setters
-    public Long getId() { return id; }
-    public void setAsset(Asset asset) { this.asset = asset; }
-    public Asset getAsset() { return asset; }
-    public String getEventType() { return eventType; }
-    public void setEventType(String eventType) { this.eventType = eventType; }
-    public String getEventDescription() { return eventDescription; }
-    public void setEventDescription(String eventDescription) { this.eventDescription = eventDescription; }
-    public void setPerformedBy(User performedBy) { this.performedBy = performedBy; }
+    public Long getId() {
+        return id;
+    }
+
+    public Asset getAsset() {
+        return asset;
+    }
+
+    public User getPerformedBy() {
+        return performedBy;
+    }
+
+    public void setAsset(Asset asset) {
+        this.asset = asset;
+    }
+
+    public void setPerformedBy(User performedBy) {
+        this.performedBy = performedBy;
+    }
+
+    public void setEventType(String eventType) {
+        this.eventType = eventType;
+    }
+
+    public void setEventDescription(String eventDescription) {
+        this.eventDescription = eventDescription;
+    }
 }
