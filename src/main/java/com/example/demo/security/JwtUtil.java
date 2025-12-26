@@ -14,9 +14,12 @@ import java.util.Map;
 @Component
 public class JwtUtil {
 
-    private static final String SECRET = "secret123";
-    private static final long EXPIRATION = 1000 * 60 * 60;
+    private static final String SECRET = "secret123secret123secret123secret123";
+    private static final long EXPIRATION = 1000 * 60 * 60; // 1 hour
 
+    // =========================
+    // TOKEN GENERATION
+    // =========================
     public String generateToken(Map<String, Object> claims, String subject) {
         return Jwts.builder()
                 .setClaims(claims)
@@ -35,6 +38,9 @@ public class JwtUtil {
         return generateToken(claims, user.getEmail());
     }
 
+    // =========================
+    // TOKEN EXTRACTION
+    // =========================
     public String extractUsername(String token) {
         return parseToken(token).getBody().getSubject();
     }
@@ -55,6 +61,9 @@ public class JwtUtil {
                         .before(new Date());
     }
 
+    // =========================
+    // TOKEN PARSING
+    // =========================
     public Jws<Claims> parseToken(String token) {
         return Jwts.parser()
                 .setSigningKey(SECRET)
