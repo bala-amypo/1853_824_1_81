@@ -45,19 +45,41 @@ public class User {
         }
     }
 
+    /* ===== REQUIRED GETTERS / SETTERS ===== */
+
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {          // ✅ REQUIRED
+        this.id = id;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getRole() {
-        return role;
+    public void setEmail(String email) {  // ✅ REQUIRED
+        this.email = email;
     }
 
     public String getDepartment() {
         return department;
+    }
+
+    public void setDepartment(String department) { // ✅ REQUIRED
+        this.department = department;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public String getPassword() {          // ✅ REQUIRED
+        return password;
+    }
+
+    public void setPassword(String password) { // ✅ REQUIRED
+        this.password = password;
     }
 }

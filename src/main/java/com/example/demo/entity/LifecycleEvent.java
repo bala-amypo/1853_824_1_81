@@ -72,5 +72,13 @@ public class LifecycleEvent {
 
     public void setEventDescription(String eventDescription) {
         this.eventDescription = eventDescription;
+        public String getEventType() {
+    return eventType;
+}
+
+public String getEventDescription() {
+    return eventDescription;
+}
+
     }
 }
