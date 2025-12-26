@@ -36,7 +36,17 @@ public class User {
         this.password = password;
         this.createdAt = createdAt;
     }
+    private LocalDateTime createdAt;
 
+    @PrePersist
+    public void prePersist() {
+        if (createdAt == null) createdAt = LocalDateTime.now();
+        if (role == null) role = "USER";
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
     // ✅ GETTERS / SETTERS
     public Long getId() { return id; }
     public String getName() { return name; }

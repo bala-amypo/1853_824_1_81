@@ -33,26 +33,28 @@ public class JwtUtil {
     }
 
     public String extractUsername(String token) {
-        return parseToken(token).getBody().getSubject();
+        return parseToken(token).getPayload().getSubject();
     }
 
     public String extractRole(String token) {
-        return (String) parseToken(token).getBody().get("role");
+        return (String) parseToken(token).getPayload().get("role");
     }
 
     public Long extractUserId(String token) {
-        Object id = parseToken(token).getBody().get("userId");
+        Object id = parseToken(token).getPayload().get("userId");
         return id == null ? null : Long.valueOf(id.toString());
     }
 
     public boolean isTokenValid(String token, String username) {
         return extractUsername(token).equals(username)
-                && !parseToken(token).getBody().getExpiration().before(new Date());
+                && !parseToken(token).getPayload()
+                        .getExpiration()
+                        .before(new Date());
     }
 
-    public Jws<Claims> parseToken(String token) {
+    public Jwt<Header, Claims> parseToken(String token) {
         return Jwts.parser()
                 .setSigningKey(SECRET)
-                .parseClaimsJws(token);
+                .parse(token);
     }
 }
