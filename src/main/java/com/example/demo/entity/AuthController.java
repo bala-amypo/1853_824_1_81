@@ -22,15 +22,16 @@ public class AuthController {
     @PostMapping("/register")
     public User register(@RequestBody RegisterRequest req) {
         User user = new User();
+        user.setName(req.getName());
         user.setEmail(req.getEmail());
-        user.setPassword(req.getPassword());
         user.setDepartment(req.getDepartment());
-        user.setRole("USER");
+        user.setPassword(req.getPassword());
         return userService.registerUser(user);
     }
 
     @PostMapping("/login")
     public String login(@RequestBody LoginRequest req) {
-        return jwtUtil.generateToken(req.getEmail());
+        User user = userService.getByEmail(req.getEmail());
+        return jwtUtil.generateTokenForUser(user); // ✅ CORRECT METHOD
     }
 }
