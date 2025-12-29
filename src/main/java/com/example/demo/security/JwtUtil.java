@@ -19,7 +19,7 @@ public class JwtUtil {
             "secret123secret123secret123secret123";
     private static final long EXPIRATION = 1000 * 60 * 60;
 
-    // ================= TOKEN GENERATION =================
+ 
     public String generateToken(Map<String, Object> claims, String subject) {
         return Jwts.builder()
                 .claims(claims)
@@ -42,7 +42,7 @@ public class JwtUtil {
         return generateToken(claims, user.getEmail());
     }
 
-    // ================= TOKEN EXTRACTION =================
+  
     public String extractUsername(String token) {
         return parseToken(token).getPayload().getSubject();
     }
@@ -63,7 +63,7 @@ public class JwtUtil {
                         .after(new Date());
     }
 
-    // ================= REQUIRED BY TESTS =================
+
     public Jws<Claims> parseToken(String token) {
         return Jwts.parser()
                 .verifyWith(

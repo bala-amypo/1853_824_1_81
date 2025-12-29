@@ -42,15 +42,12 @@ public class Asset {
         this.currentHolder = currentHolder;
         this.createdAt = createdAt;
     }
-
-    // ✅ GETTERS
     public Long getId() { return id; }
     public String getAssetTag() { return assetTag; }
     public String getStatus() { return status; }
     public User getCurrentHolder() { return currentHolder; }
     public LocalDateTime getCreatedAt() { return createdAt; }
 
-    // ✅ SETTERS
     public void setId(Long id) { this.id = id; }
     public void setAssetTag(String assetTag) { this.assetTag = assetTag; }
     public void setStatus(String status) { this.status = status; }

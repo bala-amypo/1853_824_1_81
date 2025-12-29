@@ -33,7 +33,7 @@ public class TransferRecord {
         this.approvedBy = approvedBy;
     }
 
-    // ✅ GETTERS
+
     public Long getId() { return id; }
     public Asset getAsset() { return asset; }
     public String getFromDepartment() { return fromDepartment; }
@@ -41,7 +41,6 @@ public class TransferRecord {
     public LocalDate getTransferDate() { return transferDate; }
     public User getApprovedBy() { return approvedBy; }
 
-    // ✅ SETTERS
     public void setId(Long id) { this.id = id; }
     public void setAsset(Asset asset) { this.asset = asset; }
     public void setFromDepartment(String fromDepartment) { this.fromDepartment = fromDepartment; }

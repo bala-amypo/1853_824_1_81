@@ -42,12 +42,11 @@ public class DisposalRecord {
         this.createdAt = createdAt;
     }
 
-    // ✅ GETTERS
+ 
     public Long getId() { return id; }
     public User getApprovedBy() { return approvedBy; }
     public LocalDateTime getCreatedAt() { return createdAt; }
 
-    // ✅ SETTERS
     public void setId(Long id) { this.id = id; }
     public void setAsset(Asset asset) { this.asset = asset; }
     public void setApprovedBy(User approvedBy) { this.approvedBy = approvedBy; }
