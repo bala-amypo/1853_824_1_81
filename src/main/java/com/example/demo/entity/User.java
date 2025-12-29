@@ -1,11 +1,6 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -25,18 +20,15 @@ public class User {
 
     @PrePersist
     public void prePersist() {
-        if (role == null) {
-            role = "USER";
-        }
-        if (createdAt == null) {
-            createdAt = LocalDateTime.now();
-        }
+        if (role == null) role = "USER";
+        if (createdAt == null) createdAt = LocalDateTime.now();
     }
 
     public User() {}
 
-    public User(Long id, String name, String email, String department,
-                String role, String password, LocalDateTime createdAt) {
+    public User(Long id, String name, String email,
+                String department, String role,
+                String password, LocalDateTime createdAt) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -46,19 +38,9 @@ public class User {
         this.createdAt = createdAt;
     }
 
+    // getters & setters
     public Long getId() { return id; }
-    public String getName() { return name; }
     public String getEmail() { return email; }
     public String getDepartment() { return department; }
     public String getRole() { return role; }
-    public String getPassword() { return password; }
-    public LocalDateTime getCreatedAt() { return createdAt; }
-
-
-    public void setId(Long id) { this.id = id; }
-    public void setName(String name) { this.name = name; }
-    public void setEmail(String email) { this.email = email; }
-    public void setDepartment(String department) { this.department = department; }
-    public void setRole(String role) { this.role = role; }
-    public void setPassword(String password) { this.password = password; }
 }

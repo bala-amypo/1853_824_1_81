@@ -42,14 +42,5 @@ public class DisposalRecord {
         this.createdAt = createdAt;
     }
 
- 
     public Long getId() { return id; }
-    public User getApprovedBy() { return approvedBy; }
-    public LocalDateTime getCreatedAt() { return createdAt; }
-
-    public void setId(Long id) { this.id = id; }
-    public void setAsset(Asset asset) { this.asset = asset; }
-    public void setApprovedBy(User approvedBy) { this.approvedBy = approvedBy; }
-    public void setDisposalMethod(String disposalMethod) { this.disposalMethod = disposalMethod; }
-    public void setDisposalDate(LocalDate disposalDate) { this.disposalDate = disposalDate; }
 }
