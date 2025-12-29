@@ -6,7 +6,6 @@ import com.example.demo.repository.AssetRepository;
 import com.example.demo.service.AssetService;
 import org.springframework.stereotype.Service;
 import java.util.List;
-
 @Service
 public class AssetServiceImpl implements AssetService {
 
@@ -17,6 +16,7 @@ public class AssetServiceImpl implements AssetService {
     }
 
     public Asset createAsset(Asset asset) {
+        asset.setStatus("AVAILABLE");
         return repo.save(asset);
     }
 
