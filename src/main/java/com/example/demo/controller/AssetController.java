@@ -13,34 +13,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
 @RestController
 @RequestMapping("/api/assets")
 public class AssetController {
 
-    private final AssetService service;
+    private final AssetService assetService;
 
-    public AssetController(AssetService service) {
-        this.service = service;
+    public AssetController(AssetService assetService) {
+        this.assetService = assetService;
     }
 
     @PostMapping
-    public Asset create(@RequestBody Asset asset) {
-        return service.createAsset(asset);
-    }
-
-    @GetMapping
-    public List<Asset> getAll() {
-        return service.getAllAssets();
+    public ResponseEntity<Asset> createAsset(@RequestBody Asset asset) {
+        return ResponseEntity.ok(assetService.createAsset(asset));
     }
 
     @GetMapping("/{id}")
-    public Asset get(@PathVariable Long id) {
-        return service.getAsset(id);
+    public ResponseEntity<Asset> getAsset(@PathVariable Long id) {
+        return ResponseEntity.ok(assetService.getAsset(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Asset>> getAllAssets() {
+        return ResponseEntity.ok(assetService.getAllAssets());
     }
 
     @PutMapping("/status/{id}")
-    public Asset updateStatus(@PathVariable Long id,
-                              @RequestParam String status) {
-        return service.updateStatus(id, status);
+    public ResponseEntity<Asset> updateStatus(@PathVariable Long id,
+                                              @RequestBody String status) {
+        return ResponseEntity.ok(assetService.updateStatus(id, status));
     }
 }
